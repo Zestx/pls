@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_freetab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 14:58:04 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 17:35:15 by qbackaer         ###   ########.fr       */
+/*   Created: 2019/06/12 17:14:43 by qbackaer          #+#    #+#             */
+/*   Updated: 2019/06/12 18:02:57 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
+#include <stdio.h> 
 
-size_t	ft_strlen(const char *s)
+void	ft_freetab(char **tab)
 {
-	size_t size;
+	char **roam;
 
-	if (!s)
-		return (0);
-	size = 0;
-	while (s[size])
-		size++;
-	return (size);
+	if (!tab)
+		return ;
+	roam = tab;
+	while (*roam)
+	{
+		free(*roam);
+		roam++;
+	}
+	free(tab);
 }

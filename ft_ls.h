@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 14:44:28 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/12 17:12:43 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <sys/stat.h>
 # include <pwd.h>
 # include <grp.h>
-# include "time.h"
+# include <time.h>
+# include "libft/libft.h"
+
+int		parse(int argc, char **argv, char **opt_list, char ***arg_list);
 
 #endif

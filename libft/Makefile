@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/23 18:15:17 by qbackaer          #+#    #+#              #
-#    Updated: 2018/11/05 16:58:38 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/06/12 18:11:00 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 	   ft_putendl_fd.c ft_putnbr_fd.c \
 	   ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 	   ft_lstadd.c ft_lstiter.c ft_lstmap.c \
-	   ft_isupper.c ft_islower.c ft_ccount.c ft_lstcount.c ft_isspacer.c 
+	   ft_isupper.c ft_islower.c ft_ccount.c ft_lstcount.c ft_isspacer.c \
+	   ft_freetab.c ft_tablen.c ft_printab.c
 OBJS = ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o \
 	   ft_memmove.o ft_memchr.o ft_memcmp.o \
 	   ft_strlen.o ft_strdup.o ft_strcpy.o ft_strncpy.o \
@@ -47,6 +48,7 @@ OBJS = ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o \
 	   ft_lstnew.o ft_lstdelone.o ft_lstdel.o \
 	   ft_lstadd.o ft_lstiter.o ft_lstmap.o \
 	   ft_isupper.o ft_islower.o ft_ccount.o ft_lstcount.o ft_isspacer.o \
+	   ft_freetab.o ft_tablen.o ft_printab.o
 
 .PHONY: all clean fclean re
 

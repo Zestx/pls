@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 14:58:04 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 17:35:15 by qbackaer         ###   ########.fr       */
+/*   Created: 2019/06/12 17:17:33 by qbackaer          #+#    #+#             */
+/*   Updated: 2019/06/12 17:20:48 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_tablen(char **tab)
 {
-	size_t size;
+	char	**roam;
+	size_t	len;
 
-	if (!s)
+	if (!tab)
 		return (0);
-	size = 0;
-	while (s[size])
-		size++;
-	return (size);
+	len = 0;
+	roam = tab;
+	while (*roam)
+	{
+		len++;
+		roam++;
+	}
+	return (len);
 }

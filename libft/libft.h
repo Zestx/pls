@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 16:47:24 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/01/15 07:35:17 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/12 18:10:34 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,8 @@ int				ft_lstcount(t_list *lst);
 void			*ft_lstputchar(t_list *lst, int n);
 void			*ft_lstputchar(t_list *lst, int n);
 void			*ft_lstputstr(t_list *lst, int n);
+void			ft_freetab(char **tab);
+void			ft_printab(char **tab);
+size_t			ft_tablen(char **tab);
 
 #endif
