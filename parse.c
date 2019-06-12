@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 18:27:17 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/12 19:36:57 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	**update_args(char **arg_list, char *n_arg)
 		return (NULL);
 	if (!(n_list = refill_args(arg_list, n_arg, n_list, tab_len)))
 		return (NULL);
-	return (n_list); 
+	return (n_list);
 }
 
 int			parse(int argc, char **argv, char **opt_list, char ***arg_list)
@@ -111,10 +111,10 @@ int			parse(int argc, char **argv, char **opt_list, char ***arg_list)
 		if (!stop_opt && argv[i][0] == '-')
 		{
 			if (!(*opt_list = update_options(*opt_list, argv[i])))
-				return (0); //free opt_table, dir_table, exit_failure
+				return (0);
 		}
 		else if (!(*arg_list = update_args(*arg_list, argv[i])))
-			return (0); //free opt_table, dir_table, exit_failure
+			return (0);
 		i++;
 	}
 	return (1);
