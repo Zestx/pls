@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 18:14:40 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/12 18:27:17 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,17 @@ static char	**refill_args(char **arg_list, char *n_arg, char **n_list, size_t ta
 	while (tab_len && *arg_list != NULL)
 	{
 		if (!(*ptr = ft_strdup(*arg_list)))
-			return (NULL); //free if necessary and exit.
+		{
+			ft_freetab(n_list);
+			ft_freetab(sav);
+			return (NULL);
+		}
 		arg_list++;
 		ptr++;
 	}
 	*ptr = ft_strdup(n_arg);
 	*(ptr + 1) = NULL;
-	ft_freetab(sav); //free arg_list
+	ft_freetab(sav);
 	return (n_list);
 }
 
@@ -84,7 +88,8 @@ static char	**update_args(char **arg_list, char *n_arg)
 	tab_len = ft_tablen(arg_list);
 	if (!(n_list = malloc(sizeof(n_list) * (tab_len + 2))))
 		return (NULL);
-	n_list = refill_args(arg_list, n_arg, n_list, tab_len);
+	if (!(n_list = refill_args(arg_list, n_arg, n_list, tab_len)))
+		return (NULL);
 	return (n_list); 
 }
 
