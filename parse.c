@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 19:36:57 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/13 18:21:46 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*update_options(char *opt_list, char *n_opt)
 
 	if (!opt_list)
 	{
-		if (!(n_list = malloc(ft_strlen(opt_list) + 1)))
+		if (!(n_list = malloc(ft_strlen(n_opt) + 1)))
 			return (NULL);
 	}
 	else
@@ -108,7 +108,7 @@ int			parse(int argc, char **argv, char **opt_list, char ***arg_list)
 			i++;
 			continue ;
 		}
-		if (!stop_opt && argv[i][0] == '-')
+		if (!stop_opt && argv[i][0] == '-' && ft_strlen(argv[i]) > 1)
 		{
 			if (!(*opt_list = update_options(*opt_list, argv[i])))
 				return (0);

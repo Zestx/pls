@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 19:59:43 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/13 17:50:55 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@
 int		parse(int argc, char **argv, char **opt_list, char ***arg_list);
 /* util.c */
 int		check_opt(char *opt_list, char **arg_list);
-void	args_free(char *opt_list, char **arg_list);
+void	arg_free(char **arg_list, char *opt_list);
 
 #endif
