@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 19:15:40 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/13 18:08:12 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/14 20:55:39 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@ void	arg_free(char **arg_list, char *opt_list)
 {
 	ft_freetab(arg_list);
 	ft_sfree(opt_list);
+}
+
+int		check_update(char ***tab1, char **tab2, char *roam, t_argstabs *input)
+{
+	if (!(*tab1 = update_args(*tab1, roam)))
+	{
+		ft_freetab(tab2);
+		arg_free(input->args, input->opts);
+		return (0);
+	}
+	return (1);
 }
 
 int     check_opt(char *opt_list, char **arg_list)

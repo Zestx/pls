@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/13 18:21:46 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/14 17:58:59 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static char	**refill_args(char **arg_list, char *n_arg, char **n_list, size_t ta
 	return (n_list);
 }
 
-static char	**update_args(char **arg_list, char *n_arg)
+char		**update_args(char **arg_list, char *n_arg)
 {
 	char	**n_list;
 	size_t	arg_len;

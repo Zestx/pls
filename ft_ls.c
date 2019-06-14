@@ -6,43 +6,74 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/13 20:15:04 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/14 20:59:26 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	list(char *path)
+//check the input args and separate files from directories, then call list on them.
+//to implement:  error checking and frees.
+static int	ls_dispatch(t_argstabs input)
 {
-	DIR				*dir;
-	struct dirent	*de;
+	char		**roam;
+	char		**dir_list;
+	char		**reg_list;
+	struct stat	st_buff;
 
-	if (!(dir = opendir(path)))
+	dir_list = NULL;
+	reg_list = NULL;
+	if (!input.args)
 	{
-		perror("error: ");
-		return (0);
+		// list home directory (".")
+		return (1);
 	}
-	while ((de = readdir(dir)))
-		ft_putendl(de->d_name);
+	roam = input.args;
+	while (*roam)
+	{
+		stat(*roam, &st_buff);
+		if (S_ISDIR(st_buff.st_mode))
+		{
+			if (!(check_update(&dir_list, reg_list, *roam, &input)))
+				return (0);
+		}
+		else
+		{
+			if (!(check_update(&reg_list, dir_list, *roam, &input)))
+				return (0);
+		}	
+		roam++;
+	}
+	ft_putendl("files: ");
+	ft_printab(reg_list);
+	ft_putendl("directories: ");
+	ft_printab(dir_list);
+	//list all files from reg_list first, respecting options.
+	//loop on reg_list and list their content.
+	ft_freetab(dir_list);
+	ft_freetab(reg_list);
 	return (1);
 }
 
+//review error checking and frees.
 int			main(int argc, char **argv)
 {
-	char *opt_list;
-	char **arg_list;
+	t_argstabs input;
 
-	opt_list = NULL;
-	arg_list = NULL;
-	if (!parse(argc, argv, &opt_list, &arg_list))
+	input.args = NULL;
+	input.opts = NULL;
+	if (!parse(argc, argv, &input.opts, &input.args))
 	{
-		arg_free(arg_list, opt_list);
+		arg_free(input.args, input.opts);
 		return (1);
 	}
-	if (!check_opt(opt_list, arg_list))
+	if (!check_opt(input.opts, input.args))
 		return (1);
-	list("/Users/xbackaer");
-	ft_freetab(arg_list);
-	ft_sfree(opt_list);
+	ft_putendl("input.opts:");
+	ft_putendl(input.opts);
+	ft_putendl("input.args:");
+	ft_printab(input.args);
+	ls_dispatch(input);
+	arg_free(input.args, input.opts);
 	return (0);
 }

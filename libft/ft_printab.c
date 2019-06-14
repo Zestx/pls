@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 18:04:33 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 18:09:37 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/14 15:41:40 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_printab(char **tab)
 	roam = tab;
 	while (*roam)
 	{
-		printf("arg: [%s]\n", *roam);
+		ft_putendl(*roam);
 		roam++;
 	}
 }

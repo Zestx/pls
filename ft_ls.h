@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/13 17:50:55 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/14 20:56:03 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,20 @@
 # include <time.h>
 # include "libft/libft.h"
 
+typedef struct	s_argstabs
+{
+	char **args;
+	char *opts;
+}				t_argstabs;
+
 /* parse.c */
 int		parse(int argc, char **argv, char **opt_list, char ***arg_list);
+char	**update_args(char **arg_list, char *n_arg);
+
 /* util.c */
 int		check_opt(char *opt_list, char **arg_list);
+int		check_update(char ***tab1, char **tab2, char *roam, t_argstabs *input);
 void	arg_free(char **arg_list, char *opt_list);
+
 
 #endif
