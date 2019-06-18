@@ -6,11 +6,13 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/14 20:59:26 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/18 04:04:03 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+
 
 //check the input args and separate files from directories, then call list on them.
 //to implement:  error checking and frees.

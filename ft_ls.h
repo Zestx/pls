@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/14 20:56:03 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/18 04:02:08 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ typedef struct	s_argstabs
 	char *opts;
 }				t_argstabs;
 
+
+
 /* parse.c */
 int		parse(int argc, char **argv, char **opt_list, char ***arg_list);
 char	**update_args(char **arg_list, char *n_arg);
+
+/* sort_args.c */
+int			sort_args(t_argstabs *input)
 
 /* util.c */
 int		check_opt(char *opt_list, char **arg_list);
