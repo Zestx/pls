@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/18 04:02:08 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/18 05:27:02 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		parse(int argc, char **argv, char **opt_list, char ***arg_list);
 char	**update_args(char **arg_list, char *n_arg);
 
 /* sort_args.c */
-int			sort_args(t_argstabs *input)
+int			sort_args(char ***raw, t_argstabs *input);
 
 /* util.c */
 int		check_opt(char *opt_list, char **arg_list);

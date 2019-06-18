@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/18 04:04:03 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/18 06:46:40 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,13 @@ static int	ls_dispatch(t_argstabs input)
 		}	
 		roam++;
 	}
-	ft_putendl("files: ");
-	ft_printab(reg_list);
-	ft_putendl("directories: ");
-	ft_printab(dir_list);
+	//ft_putendl("FILES:");
+	//ft_printab(reg_list);
+	//ft_putendl("DIRECTORIES:");
+	//ft_printab(dir_list);
+	//SORT ARGS: here the two lists are sorted. ->
+	if (!sort_args(&reg_list, &input) || !sort_args(&dir_list, &input))
+		return (0);
 	//list all files from reg_list first, respecting options.
 	//loop on reg_list and list their content.
 	ft_freetab(dir_list);
@@ -71,10 +74,6 @@ int			main(int argc, char **argv)
 	}
 	if (!check_opt(input.opts, input.args))
 		return (1);
-	ft_putendl("input.opts:");
-	ft_putendl(input.opts);
-	ft_putendl("input.args:");
-	ft_printab(input.args);
 	ls_dispatch(input);
 	arg_free(input.args, input.opts);
 	return (0);
