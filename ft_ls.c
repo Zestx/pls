@@ -6,61 +6,84 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/18 06:46:40 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/22 11:10:14 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+static int	list(char *path, char *options)
+{
+	DIR		*dir;
+	struct dirent *de;
 
+	ft_putendl(path);
+	dir = opendir(path);
+	while ((de = readdir(dir)))
+	{
+		ft_putendl(de->d_name);
+	}
+	return (1);
+}
 
-//check the input args and separate files from directories, then call list on them.
-//to implement:  error checking and frees.
+static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
+{
+	char **roam;
+	struct stat	st_buff;
+
+	roam = input.args;
+	while (*roam)
+	{
+		if (stat(*roam, &st_buff))
+		{
+			perror("error: ");
+			ft_freetab(*dir_list);
+			ft_freetab(*reg_list);
+			return (0);
+		}
+		if (S_ISDIR(st_buff.st_mode))
+		{
+			if (!(check_update(dir_list, *reg_list, *roam, &input)))
+				return (0);
+		}
+		else
+			if (!(check_update(reg_list, *dir_list, *roam, &input)))
+				return (0);
+		roam++;
+	}
+	return (1);
+}
+
 static int	ls_dispatch(t_argstabs input)
 {
-	char		**roam;
 	char		**dir_list;
 	char		**reg_list;
-	struct stat	st_buff;
+	char		**roam;
 
 	dir_list = NULL;
 	reg_list = NULL;
 	if (!input.args)
 	{
-		// list home directory (".")
+		list(".", input.opts);
 		return (1);
 	}
-	roam = input.args;
-	while (*roam)
+	split_args(input, &dir_list, &reg_list);
+	ft_printab(reg_list);
+	ft_putchar('\n');
+	if (dir_list)
 	{
-		stat(*roam, &st_buff);
-		if (S_ISDIR(st_buff.st_mode))
+		roam = dir_list;
+		while (*roam)
 		{
-			if (!(check_update(&dir_list, reg_list, *roam, &input)))
-				return (0);
+			list(*roam, input.opts);
+			roam++;
 		}
-		else
-		{
-			if (!(check_update(&reg_list, dir_list, *roam, &input)))
-				return (0);
-		}	
-		roam++;
 	}
-	//ft_putendl("FILES:");
-	//ft_printab(reg_list);
-	//ft_putendl("DIRECTORIES:");
-	//ft_printab(dir_list);
-	//SORT ARGS: here the two lists are sorted. ->
-	if (!sort_args(&reg_list, &input) || !sort_args(&dir_list, &input))
-		return (0);
-	//list all files from reg_list first, respecting options.
-	//loop on reg_list and list their content.
 	ft_freetab(dir_list);
 	ft_freetab(reg_list);
 	return (1);
 }
 
-//review error checking and frees.
 int			main(int argc, char **argv)
 {
 	t_argstabs input;
