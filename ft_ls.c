@@ -6,29 +6,30 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/22 11:10:14 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/22 15:05:42 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	list(char *path, char *options)
+static int	list(char *path, char *opts)
 {
-	DIR		*dir;
-	struct dirent *de;
+	DIR				*dir;
+	t_entry			*entries;
 
-	ft_putendl(path);
-	dir = opendir(path);
-	while ((de = readdir(dir)))
+	if (!(dir = opendir(path)))
 	{
-		ft_putendl(de->d_name);
+		perror(path);
+		return (0);
 	}
+	entries = NULL;
+	entries = ll_generate(entries, dir, path, opts);
 	return (1);
 }
 
 static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 {
-	char **roam;
+	char		**roam;
 	struct stat	st_buff;
 
 	roam = input.args;
@@ -46,9 +47,8 @@ static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 			if (!(check_update(dir_list, *reg_list, *roam, &input)))
 				return (0);
 		}
-		else
-			if (!(check_update(reg_list, *dir_list, *roam, &input)))
-				return (0);
+		else if (!(check_update(reg_list, *dir_list, *roam, &input)))
+			return (0);
 		roam++;
 	}
 	return (1);
