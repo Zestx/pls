@@ -14,7 +14,10 @@ t_entry			*ll_generate(t_entry *head, DIR *dir, char *path, char *opts)
 		if (entry->d_name[0] != '.' || (opts && ft_strchr(opts, 'a')))
 		{
 			if (!(head = ll_append_node(head, new_path, entry->d_name)))
+			{
+				ft_sfree(new_path);
 				return (NULL);
+			}
 
 		}
 		ft_sfree(new_path);

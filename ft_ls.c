@@ -23,7 +23,14 @@ static int	list(char *path, char *opts)
 		return (0);
 	}
 	entries = NULL;
-	entries = ll_generate(entries, dir, path, opts);
+	//create a linked list with all the entries in path.
+	if (!(entries = ll_generate(entries, dir, path, opts)))
+	{
+		ll_free(entries);
+		return (0);
+	}
+	//here we need to get all the directories in the entries, to apply recursion.
+	//or we try to do it directly with ll_generate?
 	ll_print(entries);
 	ll_free(entries);
 	closedir(dir);
@@ -38,14 +45,12 @@ static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 	roam = input.args;
 	while (*roam)
 	{
+		//on linux, if there's an invalid argument (no such file or directory..)
+		//ls will still list the other valid arguments.
+		//we need to check if MacOS behave the same way.
 		if (stat(*roam, &st_buff))
-		{
-			perror("error: ");
-			ft_freetab(*dir_list);
-			ft_freetab(*reg_list);
-			return (0);
-		}
-		if (S_ISDIR(st_buff.st_mode))
+			perror(*roam);
+		else if (S_ISDIR(st_buff.st_mode))
 		{
 			if (!(check_update(dir_list, *reg_list, *roam, &input)))
 				return (0);
@@ -71,7 +76,11 @@ static int	ls_dispatch(t_argstabs input)
 		return (1);
 	}
 	if (!split_args(input, &dir_list, &reg_list))
+	{
+		ft_freetab(dir_list);
+		ft_freetab(reg_list);
 		return (0);
+	}
 	ft_printab(reg_list);
 	ft_putchar('\n');
 	if (dir_list)
