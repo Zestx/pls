@@ -38,7 +38,7 @@ typedef struct	s_entry
 
 /* parse.c */
 int		parse(int argc, char **argv, char **opt_list, char ***arg_list);
-char	**update_args(char **arg_list, char *n_arg);
+char		**update_args(char **arg_list, char *n_arg);
 
 /* sort_args.c */
 int		sort_args(char ***raw, t_argstabs *input);
@@ -46,12 +46,14 @@ int		sort_args(char ***raw, t_argstabs *input);
 /* util.c */
 int		check_opt(char *opt_list, char **arg_list);
 int		check_update(char ***tab1, char **tab2, char *roam, t_argstabs *input);
-void	arg_free(char **arg_list, char *opt_list);
-char	*subdir_path(const char *current_path, const char *subdir);
+void		arg_free(char **arg_list, char *opt_list);
+char		*subdir_path(const char *current_path, const char *subdir);
 
 /* ll_util.c */
-t_entry	*ll_append_node(t_entry *ll_head, char *path, char *fname);
-void	ll_free(t_entry *ll_head);
-t_entry	*ll_generate(t_entry *head, DIR *dir, char *path, char *opts);
+t_entry		*ll_append_node(t_entry *ll_head, char *path, char *fname);
+void		ll_free(t_entry *ll_head);
+void		ll_print(t_entry *head);
 
+/* list.c */
+t_entry		*ll_generate(t_entry *head, DIR *dir, char *path, char *opts);
 #endif

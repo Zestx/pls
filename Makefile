@@ -2,8 +2,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra --pedantic 
 NAME = ft_ls
 INCLUDES = ./includes/ft_ls.h
-SRCS = ft_ls.c parse.c util.c sort_args.c ll_util.c
-OBJS = ft_ls.o parse.o util.o sort_args.o ll_util.o
+SRCS = ft_ls.c parse.c util.c sort_args.c ll_util.c list.c
+OBJS = ft_ls.o parse.o util.o sort_args.o ll_util.o list.o
 
 all: $(NAME)
 

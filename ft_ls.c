@@ -24,6 +24,9 @@ static int	list(char *path, char *opts)
 	}
 	entries = NULL;
 	entries = ll_generate(entries, dir, path, opts);
+	ll_print(entries);
+	ll_free(entries);
+	closedir(dir);
 	return (1);
 }
 
@@ -67,7 +70,8 @@ static int	ls_dispatch(t_argstabs input)
 		list(".", input.opts);
 		return (1);
 	}
-	split_args(input, &dir_list, &reg_list);
+	if (!split_args(input, &dir_list, &reg_list))
+		return (0);
 	ft_printab(reg_list);
 	ft_putchar('\n');
 	if (dir_list)

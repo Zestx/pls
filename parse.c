@@ -81,10 +81,8 @@ static char	**refill_args(char **arg_list, char *n_arg, char **n_list, size_t ta
 char		**update_args(char **arg_list, char *n_arg)
 {
 	char	**n_list;
-	size_t	arg_len;
 	size_t	tab_len;
 
-	arg_len = ft_strlen(n_arg);
 	tab_len = ft_tablen(arg_list);
 	if (!(n_list = malloc(sizeof(n_list) * (tab_len + 2))))
 		return (NULL);

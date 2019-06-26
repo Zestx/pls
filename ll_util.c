@@ -17,7 +17,7 @@ static t_entry	*ll_create_node(char *path, char *fname)
 	t_entry		*node;
 	struct stat	st_buff;
 
-	if (!path || fname)
+	if (!path || !fname)
 		return (NULL);
 	if (!(node = malloc(sizeof(t_entry))))
 		return (NULL);
@@ -48,23 +48,6 @@ t_entry			*ll_append_node(t_entry *head, char *path, char *fname)
 	return (head);
 }
 
-t_entry			*ll_generate(t_entry *head, DIR *dir, char *path, char *opts)
-{
-	struct dirent	*entry;
-	char			*new_path;
-
-	new_path = NULL;
-	while (!(entry = readdir(dir)))
-	{
-		if (!(new_path = subdir_path(path, entry->d_name)))
-			return (NULL);
-		if (entry->d_name[0] != '.' || (opts && ft_strchr(opts, 'a')))
-			head = ll_append_node(head, new_path, entry->d_name);
-		ft_sfree(new_path);
-	}
-	return (head);
-}
-
 void			ll_free(t_entry *head)
 {
 	t_entry	*tmp;
@@ -77,5 +60,19 @@ void			ll_free(t_entry *head)
 		free(head->filename);
 		free(head);
 		head = tmp;
+	}
+}
+
+void			ll_print(t_entry *head)
+{
+	t_entry *roam;
+
+	if (!head)
+		return ;
+	roam = head;
+	while (roam)
+	{
+		ft_putendl(roam->filename);
+		roam = roam->next;
 	}
 }
