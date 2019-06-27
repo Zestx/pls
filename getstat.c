@@ -6,10 +6,11 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:48:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/27 17:51:11 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:07:12 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//copied from my old ls. A lot of adaptations and ERROR CHECKING & MANAGEMENT to do!!
 #include "ft_ls.h"
 
 char	*get_usrname(uid_t user_id)
