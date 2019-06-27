@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/22 15:20:27 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:13:59 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void			ll_free(t_entry *head)
 	}
 }
 
-void			ll_print(t_entry *head)
+void			ll_print(t_entry *head, char *opts)
 {
 	t_entry *roam;
 
@@ -72,7 +72,7 @@ void			ll_print(t_entry *head)
 	roam = head;
 	while (roam)
 	{
-		ft_putendl(roam->filename);
+		display_wpr(roam, opts);
 		roam = roam->next;
 	}
 }

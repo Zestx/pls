@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/27 17:51:08 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:46:30 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		*subdir_path(const char *current_path, const char *subdir);
 /* ll_util.c */
 t_entry		*ll_append_node(t_entry *ll_head, char *path, char *fname);
 void		ll_free(t_entry *ll_head);
-void		ll_print(t_entry *head);
+void		ll_print(t_entry *head, char *opts);
 
 /* list.c */
 t_entry		*ll_generate(t_entry *head, DIR *dir, char *path, char *opts);
@@ -60,8 +60,9 @@ t_entry		*ll_generate(t_entry *head, DIR *dir, char *path, char *opts);
 /* display.c */
 void	display_wpr(t_entry *entry, char *options);
 int		display_entry(char *fname, struct stat *fstats, int l_mode);
-void	ll_display(t_entry *lst_head, char *dirpath, char *options);
 void	format_time(char *r_time);
+void	format_size(int size);
+void	format_link(int link);
 
 /* getstat.c */
 char	*get_usrname(uid_t user_id);

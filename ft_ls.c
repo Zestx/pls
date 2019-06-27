@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/22 15:05:42 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:12:52 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	list(char *path, char *opts)
 	}
 	//here we need to get all the directories in the entries, to apply recursion.
 	//or we try to do it directly with ll_generate?
-	ll_print(entries);
+	ll_print(entries, opts);
 	ll_free(entries);
 	closedir(dir);
 	return (1);

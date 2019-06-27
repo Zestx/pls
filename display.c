@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/27 18:06:53 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:46:33 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,6 @@ int		display_entry(char *fname, struct stat *fstats, int l_mode)
 	return (0);
 }
 
-//I think this function was only used for testing, so commented here.
-/*
-void	ll_display(t_entry *head, char *dirpath, char *opts)
-{
-	t_entry *roam;
-
-	roam = head;
-	while (cursor)
-	{
-		display_wpr(roam, options);
-		if (opts && ft_strchr(opts, 'R'))
-			recursive_wpr(roam, path, opts);
-		roam = roam->next;
-	}
-}*/
-
 void	format_time(char *r_time)
 {
 	char	*f_time;
@@ -96,4 +80,36 @@ void	format_time(char *r_time)
 	*ptr = '\0';
 	ft_putstr(f_time);
 	free(f_time);
+}
+
+void	format_size(int size)
+{
+	char	*raw_size;
+	int		nb_len;
+
+	raw_size = ft_itoa(size);
+	nb_len = ft_strlen(raw_size);
+	while (10 - nb_len > 0)
+	{
+		ft_putchar(' ');
+		nb_len++;
+	}
+	ft_putstr(raw_size);
+	free(raw_size);
+}
+
+void	format_link(int link)
+{
+	char	*raw_link;
+	int		nb_len;
+
+	raw_link = ft_itoa(link);
+	nb_len = ft_strlen(raw_link);
+	while (3 - nb_len > 0)
+	{
+		ft_putchar(' ');
+		nb_len++;
+	}
+	ft_putstr(raw_link);
+	free(raw_link);
 }
