@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/22 15:20:19 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:51:08 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,18 @@ void		ll_print(t_entry *head);
 
 /* list.c */
 t_entry		*ll_generate(t_entry *head, DIR *dir, char *path, char *opts);
+
+/* display.c */
+void	display_wpr(t_entry *entry, char *options);
+int		display_entry(char *fname, struct stat *fstats, int l_mode);
+void	ll_display(t_entry *lst_head, char *dirpath, char *options);
+void	format_time(char *r_time);
+
+/* getstat.c */
+char	*get_usrname(uid_t user_id);
+char	*get_grpname(gid_t group_id);
+void	get_mode(mode_t file_mode);
+void	get_type(char *buffer, mode_t file_mode);
+void	get_perm(char *buffer, mode_t file_mode);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/18 06:46:25 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:36:24 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ static char **swap_args(char ***args, char **smaller, int i)
 {
 	char *swaptmp;
 
-	printf("ARGS[i]: [%s]\n", *args[i]);
 	if (!(swaptmp = ft_strdup(*args[i])))
 	{
 		ft_freetab(*args);
 		return (NULL);
 	}
-	printf("OK0\n");
 	ft_sfree(*args[i]);
 	if (!(*args[i] = ft_strdup(*smaller)))
 	{
@@ -30,7 +28,6 @@ static char **swap_args(char ***args, char **smaller, int i)
 		ft_freetab(*(args + i + 1));
 		return (NULL);
 	}
-	printf("OK1\n");
 	ft_sfree(*smaller);
 	if (!(*smaller = ft_strdup(swaptmp)))
 	{
@@ -38,9 +35,7 @@ static char **swap_args(char ***args, char **smaller, int i)
 		ft_freetab(*args);
 		return (NULL);
 	}
-	printf("OK2\n");
 	ft_sfree(swaptmp);
-	printf("ENDSWAP\n");
 	return (*args);
 }
 
@@ -50,33 +45,26 @@ static char	**alphasort_args(char **args)
 	size_t	i;
 	size_t	j;
 
-	printf("ALPHASORT, tablen %zu\n", ft_tablen(args));
 	if (!args)
 		return (NULL);
 	i = 0;
 	while (ft_tablen(args) > 1 && i < ft_tablen(args) - 1)
 	{
-		printf("---> LOOP\n");
 		ft_printab(args);
 		j = i + 1;
-		printf("	init: %s\n", args[j]);
 		smaller = args[i];
 		while (j < ft_tablen(args))
 		{
-			printf("-------> loop\n");
 			if (ft_strcmp(smaller, args[j]) > 0)
 			{
-				printf("smaller!\n");
 				smaller = args[j];
 			}
 			j++;
 		}
-		printf("SMALLEST: %s\n", smaller);
 		if(!swap_args(&args, &smaller, i))
 			return (NULL);
 		i++;
 	}
-	printf("END ALPHASORT\n");
 	return (args);
 }
 
