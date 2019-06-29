@@ -6,24 +6,42 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/06/27 19:11:44 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/06/29 21:56:41 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+ -------------
+|   ~FT_LS~   |
+ -------------
+   
+  THINGS TO DO:
 
-THINGS TO DO:
+	1 - Implement time-sorting for the arguments. [priority]
 
-- Implement time-sorting for the arguments.
-- Add alpha,rev,time sorting for the entries list.
+	2 - Add alpha,rev,time sorting for the entries list.
 
-- EXTENSIVE ERROR CHECKING & MANAGEMENT for getstat.c, display.c
-	(clean exit, all free, adapted error message).
+	4 - Symbolic Links beahvior (-l, -R)
 
-- right-alignement of the stats on the long-display format (-l).
-- aditional permissions on te x of the file permissions (s, S, t, T)
+	5 - right-alignement of the stats on the long-display format (-l).
+
+	6 - aditional permissions on the (last? )'x' of the file permissions (s, S, t, T)
 	https://wiki.archlinux.org/index.php/File_permissions_and_attributes
-  (not sur if it exists on mac though..)
+ 	(not sur if it exists on mac though..)
 
-- Recursion ( -R )
+	7 - ERROR CHECKING & MANAGEMENT in general
+	(clean exit, all free, adapted error message).
+	! - It seems like we only need to do a clean exit in case of memory error (!malloc),
+		no laborious free etc..
 
-- ERROR CHECKING & MANAGEMENT in general
-- Norm, Organization
+	8 - Norm, Organization, good variable, files and functions names
+
+	9 - BONUS ideas (see 'man ls'):
+		- ACL display on -l mode
+		- [-G] colors
+		- [-e] print full ACL
+		- [-i] print inode number
+		- [-h] human-readable sizes
+		- [-n] display uid and gid numerically
+		- [-H][-L][-P] symbolic links behavior
+	- [-A] like -a but doesn't display the "." and ".."
+
+

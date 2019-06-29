@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/27 18:13:59 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/29 21:20:12 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ static t_entry	*ll_create_node(char *path, char *fname)
 	t_entry		*node;
 	struct stat	st_buff;
 
-	if (!path || !fname)
-		return (NULL);
 	if (!(node = malloc(sizeof(t_entry))))
+		exit(EXIT_FAILURE);
+	if (lstat(path, &st_buff))
+	{
+		printf("LL_CREATE_NODE ERROR\n");
+		perror(path);
 		return (NULL);
-	if (stat(path, &st_buff))
-		return (NULL);
-	node->filename = ft_strdup(fname);
+	}
+	if (!(node->filename = ft_strdup(fname)))
+		exit(EXIT_FAILURE);
 	node->filestat = st_buff;
 	node->next = NULL;
 	return (node);
@@ -35,7 +38,7 @@ t_entry			*ll_append_node(t_entry *head, char *path, char *fname)
 	t_entry *node;
 
 	if (!(node = ll_create_node(path, fname)))
-		return (NULL);
+		return (head);
 	if (!head)
 	{
 		head = node;

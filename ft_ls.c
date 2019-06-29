@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/27 18:12:52 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/29 20:27:22 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	list(char *path, char *opts)
 {
 	DIR				*dir;
 	t_entry			*entries;
+	char			**dirtab;
+	char			**roam;
 
 	if (!(dir = opendir(path)))
 	{
@@ -23,16 +25,19 @@ static int	list(char *path, char *opts)
 		return (0);
 	}
 	entries = NULL;
-	//create a linked list with all the entries in path.
-	if (!(entries = ll_generate(entries, dir, path, opts)))
-	{
-		ll_free(entries);
-		return (0);
-	}
-	//here we need to get all the directories in the entries, to apply recursion.
-	//or we try to do it directly with ll_generate?
+	dirtab = ll_generate(&entries, dir, path, opts);
+	ft_putendl(path);
 	ll_print(entries, opts);
 	ll_free(entries);
+	if (opts && ft_strchr(opts, 'R') && dirtab)
+	{
+		roam = dirtab;
+		while (*roam)
+		{
+			list(*roam, opts);
+			roam++;
+		}
+	}
 	closedir(dir);
 	return (1);
 }
@@ -45,11 +50,11 @@ static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 	roam = input.args;
 	while (*roam)
 	{
-		//on linux, if there's an invalid argument (no such file or directory..)
-		//ls will still list the other valid arguments.
-		//we need to check if MacOS behave the same way.
 		if (stat(*roam, &st_buff))
+		{
+			printf("SPLIT_ARGS ERROR\n");
 			perror(*roam);
+		}
 		else if (S_ISDIR(st_buff.st_mode))
 		{
 			if (!(check_update(dir_list, *reg_list, *roam, &input)))
@@ -84,7 +89,7 @@ static int	ls_dispatch(t_argstabs input)
 	ft_printab(reg_list);
 	ft_putchar('\n');
 	if (dir_list)
-	{
+	{	
 		roam = dir_list;
 		while (*roam)
 		{

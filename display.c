@@ -6,11 +6,11 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/27 18:46:33 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/06/29 20:25:55 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//copied from my old ls. A lot of adaptations and ERROR CHECKING & MANAGEMENT to do!!
+// A lot of adaptations and ERROR CHECKING & MANAGEMENT to do!!
 #include "ft_ls.h"
 
 void	display_wpr(t_entry *entry, char *opts)
@@ -21,37 +21,27 @@ void	display_wpr(t_entry *entry, char *opts)
 		display_entry(entry->filename, &(entry->filestat), 0);
 }
 
-//the l_mode 'boolean' is used to know if we need the long display (-l)
-//or just the filename display. Some stuff needs to be fixed on the long
-//display though, as the aditional x permissions and the right-aligned
-//display of the columns.
-int		display_entry(char *fname, struct stat *fstats, int l_mode)
+void	display_entry(char *fname, struct stat *fstats, int l_mode)
 {
-	if (l_mode == 1)
-	{
-		get_mode(fstats->st_mode);
-		ft_putstr("  ");
-		format_link(fstats->st_nlink);
-		ft_putstr("  ");
-		ft_putstr(get_usrname(fstats->st_uid));
-		ft_putstr("  ");
-		ft_putstr(get_grpname(fstats->st_gid));
-		ft_putstr("  ");
-		//right-aligned display is partly done for the size.
-		format_size(fstats->st_size);
-		ft_putstr("  ");
-		format_time(ctime(&(fstats->st_mtime)));
-		ft_putstr(fname);
-		ft_putchar('\n');
-	}
-	else if (l_mode == 0)
+	if (l_mode == 0)
 	{
 		ft_putstr(fname);
 		ft_putchar('\n');
+		return ;
 	}
-	else
-		return (-1);
-	return (0);
+	get_mode(fstats->st_mode);
+	ft_putstr("  ");
+	format_link(fstats->st_nlink);
+	ft_putstr("  ");
+	ft_putstr(get_usrname(fstats->st_uid));
+	ft_putstr("  ");
+	ft_putstr(get_grpname(fstats->st_gid));
+	ft_putstr("  ");
+	format_size(fstats->st_size);
+	ft_putstr("  ");
+	format_time(ctime(&(fstats->st_mtime)));
+	ft_putstr(fname);
+	ft_putchar('\n');
 }
 
 void	format_time(char *r_time)
