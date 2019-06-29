@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/06/29 21:56:41 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/06/29 22:00:40 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -15,33 +15,37 @@
    
   THINGS TO DO:
 
-	1 - Implement time-sorting for the arguments. [priority]
+	1 	- Implement time-sorting for the arguments. [priority]
 
-	2 - Add alpha,rev,time sorting for the entries list.
+	2 	- Add alpha,rev,time sorting for the entries list.
 
-	4 - Symbolic Links beahvior (-l, -R)
+	4 	- Symbolic Links beahvior (-l, -R)
 
-	5 - right-alignement of the stats on the long-display format (-l).
+	5 	- right-alignement of the stats on the long-display format (-l).
 
-	6 - aditional permissions on the (last? )'x' of the file permissions (s, S, t, T)
+	6 	- aditional permissions on the (last? )'x' of the file permissions (s, S, t, T)
 	https://wiki.archlinux.org/index.php/File_permissions_and_attributes
  	(not sur if it exists on mac though..)
 
-	7 - ERROR CHECKING & MANAGEMENT in general
-	(clean exit, all free, adapted error message).
-	! - It seems like we only need to do a clean exit in case of memory error (!malloc),
-		no laborious free etc..
+	7 	- ERROR CHECKING & MANAGEMENT in general
+		(clean exit, all free, adapted error message).
+		! - It seems like we only need to do a clean exit in case of memory error (!malloc),
+			no laborious free etc..
 
-	8 - Norm, Organization, good variable, files and functions names
+	8	- on parsing, no options authorized after first non-option argument (unlike linux)
 
-	9 - BONUS ideas (see 'man ls'):
-		- ACL display on -l mode
-		- [-G] colors
-		- [-e] print full ACL
-		- [-i] print inode number
-		- [-h] human-readable sizes
-		- [-n] display uid and gid numerically
-		- [-H][-L][-P] symbolic links behavior
-	- [-A] like -a but doesn't display the "." and ".."
+	9 	- Norm, Organization, good variable, files and functions names
 
+	10	- BONUS ideas (see 'man ls'):
+			- ACL display on -l mode
+			- [-G] colors
+			- [-e] print full ACL
+			- [-i] print inode number
+			- [-h] human-readable sizes
+			- [-n] display uid and gid numerically
+			- [-H][-L][-P] symbolic links behavior
+			- [-A] like -a but doesn't display the "." and ".."
 
+	BUGS:
+
+	1 - segfault when doing ./ft_ls -R on root (/), at /privates/..
