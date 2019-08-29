@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/29 20:27:22 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:04:11 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static int	ls_dispatch(t_argstabs input)
 		list(".", input.opts);
 		return (1);
 	}
+	sort_args(&input.args, &input);
 	if (!split_args(input, &dir_list, &reg_list))
 	{
 		ft_freetab(dir_list);
