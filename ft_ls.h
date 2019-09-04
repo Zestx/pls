@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/29 20:26:13 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/04 19:19:41 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		check_opt(char *opt_list, char **arg_list);
 int		check_update(char ***tab1, char **tab2, char *roam, t_argstabs *input);
 void		arg_free(char **arg_list, char *opt_list);
 char		*subdir_path(const char *current_path, const char *subdir);
+char    *get_time(char *path);
 
 /* ll_util.c */
 t_entry		*ll_append_node(t_entry *ll_head, char *path, char *fname);

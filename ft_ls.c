@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/08/29 20:04:11 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/04 19:49:41 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	list(char *path, char *opts)
 	}
 	entries = NULL;
 	dirtab = ll_generate(&entries, dir, path, opts);
+	
 	ft_putendl(path);
 	ll_print(entries, opts);
 	ll_free(entries);
@@ -52,7 +53,6 @@ static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 	{
 		if (stat(*roam, &st_buff))
 		{
-			printf("SPLIT_ARGS ERROR\n");
 			perror(*roam);
 		}
 		else if (S_ISDIR(st_buff.st_mode))
@@ -88,9 +88,8 @@ static int	ls_dispatch(t_argstabs input)
 		return (0);
 	}
 	ft_printab(reg_list);
-	ft_putchar('\n');
 	if (dir_list)
-	{	
+	{
 		roam = dir_list;
 		while (*roam)
 		{
@@ -117,6 +116,6 @@ int			main(int argc, char **argv)
 	if (!check_opt(input.opts, input.args))
 		return (1);
 	ls_dispatch(input);
-	arg_free(input.args, input.opts);
+	//arg_free(input.args, input.opts);
 	return (0);
 }

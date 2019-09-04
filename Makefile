@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra --pedantic 
+CFLAGS = -Wall -Wextra --pedantic -g 
 NAME = ft_ls
 INCLUDES = ./includes/ft_ls.h
 SRCS = ft_ls.c parse.c util.c sort_args.c ll_util.c list.c display.c getstat.c

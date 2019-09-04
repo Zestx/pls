@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freetab.c                                       :+:      :+:    :+:   */
+/*   util2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/12 17:14:43 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/04 17:08:20 by qbackaer         ###   ########.fr       */
+/*   Created: 2019/09/04 19:50:42 by qbackaer          #+#    #+#             */
+/*   Updated: 2019/09/04 19:52:02 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h> 
-
-void	ft_freetab(char **tab)
+void        init_cursors(t_cursors *llc, t_entry *lst)
 {
-	char **roam;
+	llc->curs_c = lst;
+	llc->curs_p = llc->curs_c;
+	llc->wkst_c = llc->curs_c;
+	llc->wkst_p = llc->curs_p;
 
-	if (!tab)
-		return ;
-	roam = tab;
-	while (*roam)
-	{
-		free(*roam);
-		roam++;
-	}
+}
+
+void        alpha_free_wpr(t_entry *entry, char *path)
+{
+	free(entry->filename);
+	free(entry);
+	free(path);
+
 }

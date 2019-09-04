@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/21 20:12:17 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/04 19:27:31 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static int	swap_args(char ***args, char **smaller, size_t i)
 	if (!(args_ptr[i] = ft_strdup(*smaller)))
 	{
 		ft_freetab(args_ptr + 1);
-//		ft_freetab((args + i + 1);
+		//		ft_freetab((args + i + 1);
 		return (0);
 	}
 	ft_sfree(*smaller);
 	if (!(*smaller = ft_strdup(swaptmp)))
 	{
-//		ft_freetab(*(args + (*smaller - **args) + 1));
+		//		ft_freetab(*(args + (*smaller - **args) + 1));
 		ft_freetab(args_ptr);
 		return (0);
 	}
@@ -70,6 +70,37 @@ static int	alphasort_args(char ***args)
 	return (1);
 }
 
+static int	timesort_args(char ***args)
+{
+	char	*smaller;
+	char	**args_ptr;
+	size_t	i;
+	size_t	j;
+
+	if (!*args)
+		return (0);
+	i = 0;
+	while (ft_tablen(*args) > 1 && i < ft_tablen(*args) - 1)
+	{
+		args_ptr = *args;
+		j = i + 1;
+		smaller = args_ptr[i];
+
+		while (j < ft_tablen(*args))
+		{
+			if (ft_strcmp(get_time(smaller), get_time(args_ptr[j])) < 0)
+				smaller = args_ptr[j];
+			j++;
+
+		}
+		if (ft_strcmp(get_time(args_ptr[i]), smaller))
+			if (!(swap_args(&args_ptr, &smaller, i)))
+				return (0);
+		i++;
+	}
+	return (1);
+}
+
 static char	**revsort_args(char **args)
 {
 	char	**sort;
@@ -97,38 +128,24 @@ static char	**revsort_args(char **args)
 			return (NULL);
 		}
 	}
-	free(args);
+	ft_freetab(args);
 	return (sort);
 }
 
-//sort the input lists before dispatching them, depending on options:
-//by default alphebtical sorting, if (t option) then by time and /or
-//reversed (r option). Doesn't work well right now.
-//sorting is done using the selection sort algorithm:
-//https://www.geeksforgeeks.org/program-to-sort-an-array-of-strings-using-selection-sort/
-//le triage alpha et par temps sont faits en place. le triage en reverse est fait sur une copie,
-//mais dans tout les cas le selectin sort est utilise.
 int			sort_args(char ***raw, t_argstabs *input)
 {
-/*	if (ft_strchr(input->opts, 't'))
+	if (input->opts && ft_strchr(input->opts, 't'))
 	{
-		if (!(input->args = timesort_args(input->args)))
-		{
-			ft_sfree(input->opts);
+		if (!(timesort_args(&*raw)))
 			return (0);
-		}
 	}
-	ft_printab(*raw);
-*/	if (!(alphasort_args(&*raw)))
+	else if (!(alphasort_args(&*raw)))
 	{
 		ft_freetab(input->args);
 		ft_sfree(input->opts);
 		return (0);
 	}
-	ft_putendl("\nFINAL TAB AFTER SORT : \n");
-	ft_printab(*raw);
-	ft_putchar('\n');
-	if (ft_strchr(input->opts, 'r'))
+	if (input->opts && ft_strchr(input->opts, 'r'))
 	{
 		if (!(*raw = revsort_args(*raw)))
 		{
@@ -136,8 +153,6 @@ int			sort_args(char ***raw, t_argstabs *input)
 			ft_sfree(input->opts);
 			return (0);
 		}
-		ft_putendl("FINAL TAB REVERSE SORT : \n");
-		ft_printab(*raw);
 	}
 	return (1);
 }
