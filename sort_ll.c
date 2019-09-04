@@ -6,17 +6,25 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/04 19:51:51 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/04 20:54:31 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
-void		find_weakest_alpha(t_cursors *llc)
+static void		find_weakest_alpha(t_cursors *llc, char *opts)
 {
 	while (llc->curs_c)
 	{
-		if (ft_strcmp(llc->wkst_c->filename, llc->curs_c->filename) > 0)
+		if (opts && ft_strchr(opts, 't'))
+		{
+			if (ft_strcmp(get_time(llc->wkst_c->filename), get_time(llc->curs_c->filename)) < 0)
+			{
+				llc->wkst_c = llc->curs_c;
+				llc->wkst_p = llc->curs_p;
+			}
+		}
+		else if (ft_strcmp(llc->wkst_c->filename, llc->curs_c->filename) > 0)
 		{
 			llc->wkst_c = llc->curs_c;
 			llc->wkst_p = llc->curs_p;
@@ -26,7 +34,7 @@ void		find_weakest_alpha(t_cursors *llc)
 	}
 }
 
-t_entry		*ll_alphasort(t_entry *lst, size_t ll_size, char *cwd)
+static t_entry		*ll_alpha_time_sort(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 {
 	t_entry		*sorted_lst;
 	t_cursors	llc;
@@ -38,9 +46,9 @@ t_entry		*ll_alphasort(t_entry *lst, size_t ll_size, char *cwd)
 	while (count < ll_size - 1)
 	{
 		init_cursors(&llc, lst);
-		find_weakest_alpha(&llc);
+		find_weakest_alpha(&llc, opts);
 		path = subdir_path(cwd, llc.wkst_c->filename);
-		sorted_lst = ll_add_node(sorted_lst, path, llc.wkst_c->filename, 0);
+		sorted_lst = ll_append_node(sorted_lst, path, llc.wkst_c->filename);
 		if (llc.wkst_c == llc.wkst_p)
 			lst = llc.wkst_c->next;
 		else
@@ -49,13 +57,13 @@ t_entry		*ll_alphasort(t_entry *lst, size_t ll_size, char *cwd)
 		count++;
 	}
 	path = subdir_path(cwd, lst->filename);
-	sorted_lst = ll_add_node(sorted_lst, path, lst->filename, 0);
+	sorted_lst = ll_append_node(sorted_lst, path, lst->filename);
 	free(path);
-	free_list(lst);
+	ll_free(lst);
 	return (sorted_lst);
 }
 
-t_entry		*ll_revrssort(t_entry *lst, char *cwd)
+static t_entry		*ll_revrssort(t_entry *lst, char *cwd)
 {
 	t_entry		*sorted_lst;
 	t_cursors	llc;
@@ -66,9 +74,19 @@ t_entry		*ll_revrssort(t_entry *lst, char *cwd)
 	while (llc.curs_c)
 	{
 		path = subdir_path(cwd, llc.curs_c->filename);
-		sorted_lst = ll_add_node(sorted_lst, path, llc.curs_c->filename, 1);
+		sorted_lst = ll_append_node(sorted_lst, path, llc.curs_c->filename);
 		llc.curs_c = llc.curs_c->next;
 	}
 	free(lst);
 	return (sorted_lst);
+}
+
+int					sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
+{
+	t_entry		*sorted_lst;
+	sorted_lst = NULL;
+	sorted_lst = ll_alpha_time_sort(lst, ll_size, cwd, opts);
+	if (opts && ft_strchr(opts, 'r'))
+		sorted_lst = ll_revrssort(lst, cwd);
+	return (1);
 }

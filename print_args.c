@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util2.c                                            :+:      :+:    :+:   */
+/*   print_regargs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/04 19:50:42 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/04 20:24:38 by qbackaer         ###   ########.fr       */
+/*   Created: 2019/09/04 19:58:46 by qbackaer          #+#    #+#             */
+/*   Updated: 2019/09/04 20:21:19 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void        init_cursors(t_cursors *llc, t_entry *lst)
+int		print_args(char **reglist, char *opts)
 {
-	llc->curs_c = lst;
-	llc->curs_p = llc->curs_c;
-	llc->wkst_c = llc->curs_c;
-	llc->wkst_p = llc->curs_p;
+	char *roam;
+	struct stat st_buff;
+	
+	if (lstat(path, &st_buff))
+	{
+		perror(path);
+		return (NULL);
+	}
 
-}
-
-void        alpha_free_wpr(t_entry *entry, char *path)
-{
-	free(entry->filename);
-	free(entry);
-	free(path);
-
+	if (opts && ft_strchr(opts, 'l'))
+		display_entry(entry->filename, &(entry->filestat), 1);
+	else
+		display_entry(entry->filename, &(entry->filestat), 0);
 }

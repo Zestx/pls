@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/04 19:49:41 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/04 20:42:32 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	list(char *path, char *opts)
 	}
 	entries = NULL;
 	dirtab = ll_generate(&entries, dir, path, opts);
-	
+	sort_ll(entries, ll_size(entries), path, opts);
 	ft_putendl(path);
 	ll_print(entries, opts);
 	ll_free(entries);
@@ -87,6 +87,7 @@ static int	ls_dispatch(t_argstabs input)
 		ft_freetab(reg_list);
 		return (0);
 	}
+	//print_args(reglist, input.opts);
 	ft_printab(reg_list);
 	if (dir_list)
 	{
