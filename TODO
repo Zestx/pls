@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/06/29 22:00:40 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/09/16 17:19:44 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -15,28 +15,26 @@
    
   THINGS TO DO:
 
-	1 	- Implement time-sorting for the arguments. [priority]
+	1 	- Implement a working time-sort for arguments and list. [priority]
 
-	2 	- Add alpha,rev,time sorting for the entries list.
+	2	- Correct arguments display.
 
-	4 	- Symbolic Links beahvior (-l, -R)
+	3 	- Check symbolic links behavior (-l, -R)
 
-	5 	- right-alignement of the stats on the long-display format (-l).
+	4 	- right-alignement of the stats on the long-display format (-l).
 
-	6 	- aditional permissions on the (last? )'x' of the file permissions (s, S, t, T)
-	https://wiki.archlinux.org/index.php/File_permissions_and_attributes
- 	(not sur if it exists on mac though..)
+	5 	- aditional permissions on the (last? )'x' of the file permissions (s, S, t, T)
+		  https://wiki.archlinux.org/index.php/File_permissions_and_attributes
+ 		  (not sur if it exists on mac though..)
 
-	7 	- ERROR CHECKING & MANAGEMENT in general
+	6 	- ERROR CHECKING & MANAGEMENT in general
 		(clean exit, all free, adapted error message).
 		! - It seems like we only need to do a clean exit in case of memory error (!malloc),
 			no laborious free etc..
 
-	8	- on parsing, no options authorized after first non-option argument (unlike linux)
+	7 	- Norm, Organization, good variable, files and functions names
 
-	9 	- Norm, Organization, good variable, files and functions names
-
-	10	- BONUS ideas (see 'man ls'):
+	8	- BONUS ideas (see 'man ls'):
 			- ACL display on -l mode
 			- [-G] colors
 			- [-e] print full ACL

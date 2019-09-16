@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 16:46:39 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:18:31 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ static int	ls_dispatch(t_argstabs input)
 		ft_freetab(reg_list);
 		return (0);
 	}
-	//print_args(reglist, input.opts);
-	//ft_printab(reg_list);
+	ft_printab(reg_list);
 	if (dir_list)
 	{
 		roam = dir_list;

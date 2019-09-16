@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/14 17:58:59 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:15:36 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,12 @@ int			parse(int argc, char **argv, char **opt_list, char ***arg_list)
 			if (!(*opt_list = update_options(*opt_list, argv[i])))
 				return (0);
 		}
-		else if (!(*arg_list = update_args(*arg_list, argv[i])))
-			return (0);
+		else 
+		{
+			stop_opt = 1;
+			if (!(*arg_list = update_args(*arg_list, argv[i])))
+				return (0);
+		}
 		i++;
 	}
 	return (1);
