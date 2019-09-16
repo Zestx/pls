@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 16:39:00 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 16:46:39 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	list(char *path, char *opts)
 	sorted = sort_ll(entries, ll_size(entries), path, opts);
 	ft_putendl(path);
 	ll_print(sorted, opts);
-	ll_free(entries);
+	//ll_free(entries);
 	if (opts && ft_strchr(opts, 'R') && dirtab)
 	{
 		roam = dirtab;
@@ -90,7 +90,7 @@ static int	ls_dispatch(t_argstabs input)
 		return (0);
 	}
 	//print_args(reglist, input.opts);
-	ft_printab(reg_list);
+	//ft_printab(reg_list);
 	if (dir_list)
 	{
 		roam = dir_list;

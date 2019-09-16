@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 16:38:02 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 16:58:01 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void        alpha_free_wpr(t_entry *entry, char *path);
 
 /* ll_util.c */
 t_entry		*ll_append_node(t_entry *ll_head, char *path, char *fname);
+t_entry		*ll_push_node(t_entry *ll_head, char *path, char *fname);
 void		ll_free(t_entry *ll_head);
 void		ll_print(t_entry *head, char *opts);
 size_t          ll_size(t_entry *head);

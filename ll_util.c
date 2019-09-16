@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/04 20:38:23 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 16:57:25 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,22 @@ t_entry			*ll_append_node(t_entry *head, char *path, char *fname)
 	while (roam->next)
 		roam = roam->next;
 	roam->next = node;
+	return (head);
+}
+
+t_entry			*ll_push_node(t_entry *head, char *path, char *fname)
+{
+	t_entry *node;
+
+	if (!(node = ll_create_node(path, fname)))
+		return (head);
+	if (!head)
+	{
+		head = node;
+		return (head);
+	}
+	node->next = head;
+	head = node;
 	return (head);
 }
 

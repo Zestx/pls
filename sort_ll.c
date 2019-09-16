@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 16:37:59 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:06:26 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,9 @@ static t_entry		*ll_revrssort(t_entry *lst, char *cwd)
 	while (llc.curs_c)
 	{
 		path = subdir_path(cwd, llc.curs_c->filename);
-		sorted_lst = ll_append_node(sorted_lst, path, llc.curs_c->filename);
+		sorted_lst = ll_push_node(sorted_lst, path, llc.curs_c->filename);
 		llc.curs_c = llc.curs_c->next;
 	}
-	free(lst);
 	return (sorted_lst);
 }
 
@@ -88,6 +87,6 @@ t_entry					*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 	sorted_lst = NULL;
 	sorted_lst = ll_alpha_time_sort(lst, ll_size, cwd, opts);
 	if (opts && ft_strchr(opts, 'r'))
-		sorted_lst = ll_revrssort(lst, cwd);
+		sorted_lst = ll_revrssort(sorted_lst, cwd);
 	return (sorted_lst);
 }
