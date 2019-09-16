@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/04 20:54:31 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 16:37:59 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static t_entry		*ll_alpha_time_sort(t_entry *lst, size_t ll_size, char *cwd, cha
 			lst = llc.wkst_c->next;
 		else
 			llc.wkst_p->next = llc.wkst_c->next;
+		
 		alpha_free_wpr(llc.wkst_c, path);
 		count++;
 	}
@@ -81,12 +82,12 @@ static t_entry		*ll_revrssort(t_entry *lst, char *cwd)
 	return (sorted_lst);
 }
 
-int					sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
+t_entry					*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 {
 	t_entry		*sorted_lst;
 	sorted_lst = NULL;
 	sorted_lst = ll_alpha_time_sort(lst, ll_size, cwd, opts);
 	if (opts && ft_strchr(opts, 'r'))
 		sorted_lst = ll_revrssort(lst, cwd);
-	return (1);
+	return (sorted_lst);
 }
