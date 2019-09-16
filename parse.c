@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 17:15:36 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 18:29:38 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static char	**refill_args(char **arg_list, char *n_arg, char **n_list, size_t ta
 	}
 	*ptr = ft_strdup(n_arg);
 	*(ptr + 1) = NULL;
-	ft_freetab(sav);
 	return (n_list);
 }
 
@@ -88,6 +87,7 @@ char		**update_args(char **arg_list, char *n_arg)
 		return (NULL);
 	if (!(n_list = refill_args(arg_list, n_arg, n_list, tab_len)))
 		return (NULL);
+	ft_freetab(arg_list);
 	return (n_list);
 }
 

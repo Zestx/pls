@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 17:06:26 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/16 18:09:36 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ static t_entry		*ll_alpha_time_sort(t_entry *lst, size_t ll_size, char *cwd, cha
 		if (llc.wkst_c == llc.wkst_p)
 			lst = llc.wkst_c->next;
 		else
-			llc.wkst_p->next = llc.wkst_c->next;
-		
+			llc.wkst_p->next = llc.wkst_c->next;	
 		alpha_free_wpr(llc.wkst_c, path);
 		count++;
 	}
