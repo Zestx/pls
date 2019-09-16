@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/09/16 17:19:44 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/09/16 19:48:47 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -47,3 +47,4 @@
 	BUGS:
 
 	1 - segfault when doing ./ft_ls -R on root (/), at /privates/..
+	2 - leak on update_args allocated stuffs.
