@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:48:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/29 15:41:25 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 19:27:00 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ char	*get_usrname(uid_t user_id)
 {
 	struct passwd *usr_stats;
 
-	usr_stats = getpwuid(user_id);
+	if (!(usr_stats = getpwuid(user_id)))
+		return (NULL);
 	return (usr_stats->pw_name);
 }
 
@@ -25,7 +26,8 @@ char	*get_grpname(gid_t group_id)
 {
 	struct group *grp_stats;
 
-	grp_stats = getgrgid(group_id);
+	if (!(grp_stats = getgrgid(group_id)))
+		return (NULL);
 	return (grp_stats->gr_name);
 }
 
