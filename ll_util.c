@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 18:20:30 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 17:28:56 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static t_entry	*ll_create_node(char *path, char *fname)
 		perror(path);
 		return (NULL);
 	}
+	if (!(node->path = ft_strdup(path)))
+		exit(EXIT_FAILURE);
 	if (!(node->filename = ft_strdup(fname)))
 		exit(EXIT_FAILURE);
 	node->filestat = st_buff;

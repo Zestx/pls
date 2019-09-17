@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 16:55:03 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 17:25:27 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_argstabs
 typedef struct	s_entry
 {
 	char			*filename;
+	char			*path;
 	struct stat		filestat;
 	struct s_entry	*next;
 }				t_entry;
