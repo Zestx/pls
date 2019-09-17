@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 16:58:01 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 16:55:03 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		check_opt(char *opt_list, char **arg_list);
 int		check_update(char ***tab1, char **tab2, char *roam, t_argstabs *input);
 void		arg_free(char **arg_list, char *opt_list);
 char		*subdir_path(const char *current_path, const char *subdir);
-char    *get_time(char *path);
+long    get_time(char *path);
 
 /* util2.c */
 void        init_cursors(t_cursors *llc, t_entry *lst);

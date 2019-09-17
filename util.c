@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 19:15:40 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 17:26:39 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 16:54:51 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ int     check_opt(char *opt_list, char **arg_list)
 	return (1);
 }
 
-char    *get_time(char *path)
+long    get_time(char *path)
 {
 	struct stat    attr;
 	time_t m_time;
 
 	stat(path, &attr);
 	m_time = attr.st_mtime;
-	return (ft_itoa(m_time));
+	return (m_time);
 }

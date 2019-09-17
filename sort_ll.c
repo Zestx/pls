@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 18:09:36 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 16:54:29 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void		find_weakest_alpha(t_cursors *llc, char *opts)
 	{
 		if (opts && ft_strchr(opts, 't'))
 		{
-			if (ft_strcmp(get_time(llc->wkst_c->filename), get_time(llc->curs_c->filename)) < 0)
+
+			if (get_time(llc->wkst_c->filename) < get_time(llc->curs_c->filename))
 			{
 				llc->wkst_c = llc->curs_c;
 				llc->wkst_p = llc->curs_p;
@@ -56,6 +57,9 @@ static t_entry		*ll_alpha_time_sort(t_entry *lst, size_t ll_size, char *cwd, cha
 		alpha_free_wpr(llc.wkst_c, path);
 		count++;
 	}
+	printf("====LIST====\n");
+	ll_print(sorted_lst, opts);
+	printf("============\n");
 	path = subdir_path(cwd, lst->filename);
 	sorted_lst = ll_append_node(sorted_lst, path, lst->filename);
 	free(path);
@@ -83,8 +87,11 @@ static t_entry		*ll_revrssort(t_entry *lst, char *cwd)
 t_entry					*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 {
 	t_entry		*sorted_lst;
+
 	sorted_lst = NULL;
-	sorted_lst = ll_alpha_time_sort(lst, ll_size, cwd, opts);
+	sorted_lst = ll_alpha_time_sort(lst, ll_size, cwd, "");
+	if (opts && ft_strchr(opts, 't'))
+		sorted_lst = ll_alpha_time_sort(sorted_lst , ll_size, cwd, "t");
 	if (opts && ft_strchr(opts, 'r'))
 		sorted_lst = ll_revrssort(sorted_lst, cwd);
 	return (sorted_lst);

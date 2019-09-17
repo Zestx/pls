@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/04 19:27:31 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 16:54:05 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ static int	timesort_args(char ***args)
 
 		while (j < ft_tablen(*args))
 		{
-			if (ft_strcmp(get_time(smaller), get_time(args_ptr[j])) < 0)
+			if (get_time(smaller) < get_time(args_ptr[j]))
 				smaller = args_ptr[j];
 			j++;
 
 		}
-		if (ft_strcmp(get_time(args_ptr[i]), smaller))
+		if (get_time(args_ptr[i]) == get_time(smaller))
 			if (!(swap_args(&args_ptr, &smaller, i)))
 				return (0);
 		i++;

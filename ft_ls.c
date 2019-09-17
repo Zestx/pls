@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 19:56:03 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 16:42:04 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ int			main(int argc, char **argv)
 	if (!check_opt(input.opts, input.args))
 		return (1);
 	ls_dispatch(input);
-	arg_free(input.args, input.opts);
+	//arg_free(input.args, input.opts);
 	return (0);
 }
