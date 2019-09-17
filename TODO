@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/09/17 15:43:18 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/09/17 19:50:42 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -15,7 +15,9 @@
    
   THINGS TO DO:
 
-	1 	- Implement a working time-sort for arguments and list. [priority]
+	1	- Display: print "\n[nomdedossier]:"
+
+	2	- We must display empty directories when put on arguments ONLY if there's other arguments
 
 	3 	- Check symbolic links behavior (-l, -R)
 
