@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 17:32:12 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 18:59:27 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ static t_entry		*ll_revrssort(t_entry *lst, char *cwd)
 t_entry					*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 {
 	t_entry		*sorted_lst;
-	
+
+	if (!lst)
+		return (lst);
 	sorted_lst = NULL;
 	sorted_lst = ll_alpha_time_sort(lst, ll_size, cwd, "");
 	if (opts && ft_strchr(opts, 't'))

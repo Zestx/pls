@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 17:28:56 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 19:03:22 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,27 +90,16 @@ void			ll_print(t_entry *head, char *opts)
 
 	if (!head)
 		return ;
+	if (opts && ft_strchr(opts, 'l'))
+	{
+		ft_putstr("total ");
+		ft_putnbr(count_ll_blocks(head));
+		ft_putchar('\n');
+	}
 	roam = head;
 	while (roam)
 	{
 		display_wpr(roam, opts);
 		roam = roam->next;
 	}
-}
-
-size_t			ll_size(t_entry *head)
-{
-	t_entry *roam;
-	size_t	i;
-
-	if (!head)
-		return (0);
-	i = 0;
-	roam = head;
-	while (roam)
-	{
-		roam = roam->next;
-		i++;
-	}
-	return (i);
 }

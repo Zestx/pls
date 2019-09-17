@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 19:15:40 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 17:23:22 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/17 18:30:42 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ long    get_time(char *path)
 	time_t m_time;
 
 	if (stat(path, &attr))
-	{
-		printf("STAT ERROR\n");
-	}
+		return (0);
 	m_time = attr.st_mtime;
 	return (m_time);
 }
