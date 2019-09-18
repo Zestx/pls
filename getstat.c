@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:48:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 19:27:00 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:00:36 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,10 @@ void	get_perm(char *buffer, mode_t file_mode)
 		buffer[8] = 'w';
 	if (file_mode & S_IXOTH)
 		buffer[9] = 'x';
+	if (file_mode & S_ISUID)
+		buffer[3] = buffer[3] == 'x' ? 's' : 'S';
+	if (file_mode & S_ISGID)
+		buffer[6] = buffer[6] == 'x' ? 's' : 'S';
+	if (file_mode & S_ISVTX)
+		buffer[9] = buffer[9] == 'x' ? 't' : 'T';
 }
