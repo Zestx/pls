@@ -6,11 +6,15 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 16:54:05 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:27:10 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+/*
+** missing frees!
+*/
 
 static int	swap_args(char ***args, char **smaller, size_t i)
 {
@@ -27,13 +31,11 @@ static int	swap_args(char ***args, char **smaller, size_t i)
 	if (!(args_ptr[i] = ft_strdup(*smaller)))
 	{
 		ft_freetab(args_ptr + 1);
-		//		ft_freetab((args + i + 1);
 		return (0);
 	}
 	ft_sfree(*smaller);
 	if (!(*smaller = ft_strdup(swaptmp)))
 	{
-		//		ft_freetab(*(args + (*smaller - **args) + 1));
 		ft_freetab(args_ptr);
 		return (0);
 	}
@@ -85,13 +87,11 @@ static int	timesort_args(char ***args)
 		args_ptr = *args;
 		j = i + 1;
 		smaller = args_ptr[i];
-
 		while (j < ft_tablen(*args))
 		{
 			if (get_time(smaller) < get_time(args_ptr[j]))
 				smaller = args_ptr[j];
 			j++;
-
 		}
 		if (get_time(args_ptr[i]) == get_time(smaller))
 			if (!(swap_args(&args_ptr, &smaller, i)))
@@ -120,14 +120,12 @@ static char	**revsort_args(char **args)
 	while (i < ft_tablen(args) - 1)
 		i++;
 	while (j < ft_tablen(args))
-	{
 		if (!(sort[j++] = ft_strdup(args[i--])))
 		{
 			ft_freetab(args);
 			ft_freetab(sort);
 			return (NULL);
 		}
-	}
 	ft_freetab(args);
 	return (sort);
 }

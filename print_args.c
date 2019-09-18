@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:58:46 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 19:51:34 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:07:58 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 int		print_args(char **reglist, char *opts)
 {
-	char **roam;
-	char *path;
-	struct stat st_buff;
+	char		**roam;
+	char		*path;
+	struct stat	st_buff;
 
 	if (!reglist || !*reglist)
 		return (0);
 	roam = reglist;
 	while (*roam)
 	{
-		//secure this:
 		path = subdir_path(".", *roam);
 		if (lstat(path, &st_buff))
 		{

@@ -6,11 +6,10 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:48:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 14:00:36 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:07:09 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//A lot of adaptations and ERROR CHECKING & MANAGEMENT to do!!
 #include "ft_ls.h"
 
 char	*get_usrname(uid_t user_id)

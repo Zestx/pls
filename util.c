@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 19:15:40 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 18:30:42 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/18 14:11:07 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		check_update(char ***tab1, char **tab2, char *roam, t_argstabs *input)
 	return (1);
 }
 
-int     check_opt(char *opt_list, char **arg_list)
+int		check_opt(char *opt_list, char **arg_list)
 {
 	char *roam;
 
@@ -78,10 +78,10 @@ int     check_opt(char *opt_list, char **arg_list)
 	return (1);
 }
 
-long    get_time(char *path)
+long	get_time(char *path)
 {
-	struct stat    attr;
-	time_t m_time;
+	struct stat	attr;
+	time_t		m_time;
 
 	if (stat(path, &attr))
 		return (0);

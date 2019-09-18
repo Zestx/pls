@@ -6,13 +6,15 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 19:01:53 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/18 16:36:29 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	list(char *path, char *opts)
+
+
+static int	list(char *path, char *opts, int f_flag)
 {
 	DIR				*dir;
 	t_entry			*entries;
@@ -29,8 +31,9 @@ static int	list(char *path, char *opts)
 	entries = NULL;
 	dirtab = ll_generate(&entries, dir, path, opts);
 	sorted = sort_ll(entries, ll_size(entries), path, opts);
-	if (opts && ft_strchr(opts, 'R'))
-		ft_putendl(path);
+	if (f_flag)
+		ft_putchar('\n');
+	ft_putstr(path); ft_putendl(":");
 	ll_print(sorted, opts);
 	ll_free(sorted);
 	if (opts && ft_strchr(opts, 'R') && dirtab)
@@ -38,7 +41,7 @@ static int	list(char *path, char *opts)
 		roam = dirtab;
 		while (*roam)
 		{
-			list(*roam, opts);
+			list(*roam, opts, f_flag);
 			roam++;
 		}
 	}
@@ -76,12 +79,14 @@ static int	ls_dispatch(t_argstabs input)
 	char		**dir_list;
 	char		**reg_list;
 	char		**roam;
+	int			f_flag;
 
+	f_flag = 0;
 	dir_list = NULL;
 	reg_list = NULL;
 	if (!input.args)
 	{
-		list(".", input.opts);
+		list(".", input.opts, f_flag);
 		return (1);
 	}
 	sort_args(&input.args, &input);
@@ -97,7 +102,8 @@ static int	ls_dispatch(t_argstabs input)
 		roam = dir_list;
 		while (*roam)
 		{
-			list(*roam, input.opts);
+			list(*roam, input.opts, f_flag);
+			f_flag = 1;
 			roam++;
 		}
 	}
@@ -120,6 +126,5 @@ int			main(int argc, char **argv)
 	if (!check_opt(input.opts, input.args))
 		return (1);
 	ls_dispatch(input);
-	//arg_free(input.args, input.opts);
 	return (0);
 }

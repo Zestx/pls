@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/09/17 19:50:42 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/09/18 17:25:54 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -15,36 +15,27 @@
    
   THINGS TO DO:
 
-	1	- Display: print "\n[nomdedossier]:"
+	1 	- Check symbolic links behavior (-l, -R)
 
-	2	- We must display empty directories when put on arguments ONLY if there's other arguments
+	2 	- right-alignement of the stats on the long-display format (-l).
 
-	3 	- Check symbolic links behavior (-l, -R)
-
-	4 	- right-alignement of the stats on the long-display format (-l).
-
-	5 	- aditional permissions on the (last? )'x' of the file permissions (s, S, t, T)
-		  https://wiki.archlinux.org/index.php/File_permissions_and_attributes
- 		  (not sur if it exists on mac though..)
-
-	6 	- ERROR CHECKING & MANAGEMENT in general
+	3 	- ERROR CHECKING & MANAGEMENT in general
 		(clean exit, all free, adapted error message).
 		! - It seems like we only need to do a clean exit in case of memory error (!malloc),
 			no laborious free etc..
 
-	7 	- Norm, Organization, good variable, files and functions names
+	4 	- Norm, Organization, good variable, files and functions names
 
-	8	- BONUS ideas (see 'man ls'):
-			- ACL display on -l mode
-			- [-G] colors
-			- [-e] print full ACL
-			- [-i] print inode number
-			- [-h] human-readable sizes
-			- [-n] display uid and gid numerically
-			- [-H][-L][-P] symbolic links behavior
-			- [-A] like -a but doesn't display the "." and ".."
 
 	BUGS:
+		- leak on update_args allocated stuffs.
 
-	1 - segfault when doing ./ft_ls -R on root (/), at /privates/..
-	2 - leak on update_args allocated stuffs.
+	BONUS ideas (see 'man ls'):
+		- ACL display on -l mode
+		- [-G] colors
+		- [-e] print full ACL
+		- [-i] print inode number
+		- [-h] human-readable sizes
+		- [-n] display uid and gid numerically
+		- [-H][-L][-P] symbolic links behavior
+		- [-A] like -a but doesn't display the "." and ".."

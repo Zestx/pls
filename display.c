@@ -6,11 +6,10 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 19:22:11 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:05:05 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// A lot of adaptations and ERROR CHECKING & MANAGEMENT to do!!
 #include "ft_ls.h"
 
 void	display_wpr(t_entry *entry, char *opts)

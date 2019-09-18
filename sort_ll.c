@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 18:59:27 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/18 14:21:10 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void		find_weakest_alpha(t_cursors *llc, char *opts)
 	{
 		if (opts && ft_strchr(opts, 't'))
 		{
-
 			if (get_time(llc->wkst_c->path) < get_time(llc->curs_c->path))
 			{
 				llc->wkst_c = llc->curs_c;
@@ -35,7 +34,7 @@ static void		find_weakest_alpha(t_cursors *llc, char *opts)
 	}
 }
 
-static t_entry		*ll_alpha_time_sort(t_entry *lst, size_t ll_size, char *cwd, char *opts)
+static t_entry	*ll_sort(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 {
 	t_entry		*sorted_lst;
 	t_cursors	llc;
@@ -53,7 +52,7 @@ static t_entry		*ll_alpha_time_sort(t_entry *lst, size_t ll_size, char *cwd, cha
 		if (llc.wkst_c == llc.wkst_p)
 			lst = llc.wkst_c->next;
 		else
-			llc.wkst_p->next = llc.wkst_c->next;	
+			llc.wkst_p->next = llc.wkst_c->next;
 		alpha_free_wpr(llc.wkst_c, path);
 		count++;
 	}
@@ -64,7 +63,7 @@ static t_entry		*ll_alpha_time_sort(t_entry *lst, size_t ll_size, char *cwd, cha
 	return (sorted_lst);
 }
 
-static t_entry		*ll_revrssort(t_entry *lst, char *cwd)
+static t_entry	*ll_revrssort(t_entry *lst, char *cwd)
 {
 	t_entry		*sorted_lst;
 	t_cursors	llc;
@@ -81,16 +80,16 @@ static t_entry		*ll_revrssort(t_entry *lst, char *cwd)
 	return (sorted_lst);
 }
 
-t_entry					*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
+t_entry			*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 {
 	t_entry		*sorted_lst;
 
 	if (!lst)
 		return (lst);
 	sorted_lst = NULL;
-	sorted_lst = ll_alpha_time_sort(lst, ll_size, cwd, "");
+	sorted_lst = ll_sort(lst, ll_size, cwd, "");
 	if (opts && ft_strchr(opts, 't'))
-		sorted_lst = ll_alpha_time_sort(sorted_lst , ll_size, cwd, "t");
+		sorted_lst = ll_sort(sorted_lst, ll_size, cwd, "t");
 	if (opts && ft_strchr(opts, 'r'))
 		sorted_lst = ll_revrssort(sorted_lst, cwd);
 	return (sorted_lst);

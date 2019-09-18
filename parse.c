@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/16 18:29:38 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:19:33 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ static char	*update_options(char *opt_list, char *n_opt)
 	return (n_list);
 }
 
-static char	**refill_args(char **arg_list, char *n_arg, char **n_list, size_t tab_len)
+static char	**refill(char **arg_list, char *n_arg, char **n_list, size_t len)
 {
 	char **ptr;
 	char **sav;
 
 	ptr = n_list;
 	sav = arg_list;
-	while (tab_len && *arg_list != NULL)
+	while (len && *arg_list != NULL)
 	{
 		if (!(*ptr = ft_strdup(*arg_list)))
 		{
@@ -85,7 +85,7 @@ char		**update_args(char **arg_list, char *n_arg)
 	tab_len = ft_tablen(arg_list);
 	if (!(n_list = malloc(sizeof(n_list) * (tab_len + 2))))
 		return (NULL);
-	if (!(n_list = refill_args(arg_list, n_arg, n_list, tab_len)))
+	if (!(n_list = refill(arg_list, n_arg, n_list, tab_len)))
 		return (NULL);
 	ft_freetab(arg_list);
 	return (n_list);
@@ -111,7 +111,7 @@ int			parse(int argc, char **argv, char **opt_list, char ***arg_list)
 			if (!(*opt_list = update_options(*opt_list, argv[i])))
 				return (0);
 		}
-		else 
+		else
 		{
 			stop_opt = 1;
 			if (!(*arg_list = update_args(*arg_list, argv[i])))

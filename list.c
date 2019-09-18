@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 13:58:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 17:25:10 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:06:29 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char			**ll_generate(t_entry **head, DIR *dir, char *path, char *opts)
 			}
 			if (isdir(*head))
 				if (!(dirtab = update_args(dirtab, new_path)))
-				{	
+				{
 					ft_freetab(dirtab);
 					ft_sfree(new_path);
 					return (NULL);
@@ -62,4 +62,3 @@ char			**ll_generate(t_entry **head, DIR *dir, char *path, char *opts)
 	}
 	return (dirtab);
 }
-
