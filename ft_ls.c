@@ -6,13 +6,11 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 16:36:29 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 18:34:24 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-
 
 static int	list(char *path, char *opts, int f_flag)
 {
@@ -71,6 +69,7 @@ static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 			return (0);
 		roam++;
 	}
+	ft_freetab(input.args);
 	return (1);
 }
 
@@ -116,6 +115,7 @@ int			main(int argc, char **argv)
 {
 	t_argstabs input;
 
+	printf("TIME: %ld\n", time(NULL));
 	input.args = NULL;
 	input.opts = NULL;
 	if (!parse(argc, argv, &input.opts, &input.args))

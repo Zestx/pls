@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:50:42 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 14:11:41 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 19:40:59 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,32 @@ void	alpha_free_wpr(t_entry *entry, char *path)
 	free(entry->filename);
 	free(entry);
 	free(path);
+}
+
+int	is_tooold(time_t m_time)
+{
+	if (time(NULL) - m_time > 2629746)
+		return (1);
+	return (0);
+}
+
+char *get_year(char *m_time)
+{
+	char	*ptr;
+	char	*year;
+	int		i;
+
+	ptr = m_time;
+	while (*ptr != '\n')
+		ptr++;
+	*ptr = '\0';
+	i = 0;
+	while (i < 4)
+	{
+		ptr--;
+		i++;
+	}
+	if (!(year = ft_strdup(ptr)))
+		return (NULL);
+	return (year);
 }

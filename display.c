@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 14:05:05 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/18 19:51:51 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,36 +38,21 @@ void	display_entry(char *fname, struct stat *fstats, int l_mode)
 	ft_putstr("  ");
 	format_size(fstats->st_size);
 	ft_putstr("  ");
-	format_time(ctime(&(fstats->st_mtime)));
+	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
 	ft_putstr(fname);
 	ft_putchar('\n');
 }
 
-void	format_time(char *r_time)
+void	format_time(char *r_time, int too_old)
 {
 	char	*f_time;
-	int		col_count;
-	char	*ptr;
 
-	f_time = malloc(15);
-	ptr = f_time;
 	while (*r_time != ' ')
 		r_time++;
 	r_time++;
-	col_count = 0;
-	while (1)
-	{
-		if (*r_time == ':')
-			col_count++;
-		if (col_count >= 2)
-			break ;
-		*ptr = *r_time;
-		ptr++;
-		r_time++;
-	}
-	*ptr++ = ' ';
-	*ptr = '\0';
+	f_time = format_old(r_time);
 	ft_putstr(f_time);
+	ft_putchar(' ');
 	free(f_time);
 }
 

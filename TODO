@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/09/18 17:25:54 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/09/18 18:12:07 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -19,12 +19,14 @@
 
 	2 	- right-alignement of the stats on the long-display format (-l).
 
-	3 	- ERROR CHECKING & MANAGEMENT in general
+	3 	- if file is older than 6 months, show year instead of hour
+
+	4 	- ERROR CHECKING & MANAGEMENT in general
 		(clean exit, all free, adapted error message).
 		! - It seems like we only need to do a clean exit in case of memory error (!malloc),
 			no laborious free etc..
 
-	4 	- Norm, Organization, good variable, files and functions names
+	5 	- Norm, Organization, good variable, files and functions names
 
 
 	BUGS:

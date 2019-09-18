@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/17 18:20:48 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/18 19:46:12 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ long    get_time(char *path);
 /* util2.c */
 void        init_cursors(t_cursors *llc, t_entry *lst);
 void        alpha_free_wpr(t_entry *entry, char *path);
+int			is_tooold(time_t m_time);
+char		*get_year(char *m_time);
 
 /* ll_util.c */
 t_entry		*ll_append_node(t_entry *ll_head, char *path, char *fname);
@@ -79,6 +81,7 @@ void		ll_print(t_entry *head, char *opts);
 /* ll_util2.c */
 size_t		ll_size(t_entry *head);
 size_t		count_ll_blocks(t_entry *head);
+int			is_tooold(time_t m_time);
 
 /* list.c */
 char		**ll_generate(t_entry **head, DIR *dir, char *path, char *opts);
@@ -86,7 +89,7 @@ char		**ll_generate(t_entry **head, DIR *dir, char *path, char *opts);
 /* display.c */
 void	display_wpr(t_entry *entry, char *options);
 void	display_entry(char *fname, struct stat *fstats, int l_mode);
-void	format_time(char *r_time);
+void	format_time(char *r_time, int too_old);
 void	format_size(int size);
 void	format_link(int link);
 
@@ -96,5 +99,9 @@ char	*get_grpname(gid_t group_id);
 void	get_mode(mode_t file_mode);
 void	get_type(char *buffer, mode_t file_mode);
 void	get_perm(char *buffer, mode_t file_mode);
+
+/* util_time.c */
+char	*format_yun(char *r_time);
+char	*format_old(char *r_time);
 
 #endif
