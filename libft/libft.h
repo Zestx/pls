@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 16:47:24 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/06/12 18:31:09 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:45:46 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void			ft_freetab(char **tab);
 void			ft_printab(char **tab);
 size_t			ft_tablen(char **tab);
 void			ft_sfree(char *str);
+size_t			ft_count_digits(size_t n);
 
 #endif

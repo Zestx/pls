@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 19:51:51 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:19:38 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void	display_wpr(t_entry *entry, char *opts)
 {
+	size_t	max_size_length;
+
+	max_size_length = get_size_max(entry);
 	if (opts && ft_strchr(opts, 'l'))
-		display_entry(entry->filename, &(entry->filestat), 1);
+		display_entry(entry->filename, &(entry->filestat), 1, max_size_length);
 	else
-		display_entry(entry->filename, &(entry->filestat), 0);
+		display_entry(entry->filename, &(entry->filestat), 0, 0);
 }
 
-void	display_entry(char *fname, struct stat *fstats, int l_mode)
+void	display_entry(char *fname, struct stat *fstats, int l_mode, size_t	max_size)
 {
 	if (l_mode == 0)
 	{
@@ -36,7 +39,7 @@ void	display_entry(char *fname, struct stat *fstats, int l_mode)
 	ft_putstr("  ");
 	ft_putstr(get_grpname(fstats->st_gid));
 	ft_putstr("  ");
-	format_size(fstats->st_size);
+	format_size(fstats->st_size, max_size);
 	ft_putstr("  ");
 	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
 	ft_putstr(fname);
@@ -56,14 +59,14 @@ void	format_time(char *r_time, int too_old)
 	free(f_time);
 }
 
-void	format_size(int size)
+void	format_size(int size, size_t max_size)
 {
 	char	*raw_size;
 	int		nb_len;
 
 	raw_size = ft_itoa(size);
 	nb_len = ft_strlen(raw_size);
-	while (10 - nb_len > 0)
+	while (max_size - nb_len > 0)
 	{
 		ft_putchar(' ');
 		nb_len++;

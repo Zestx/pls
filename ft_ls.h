@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 19:46:12 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:21:15 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,16 @@ void		ll_print(t_entry *head, char *opts);
 size_t		ll_size(t_entry *head);
 size_t		count_ll_blocks(t_entry *head);
 int			is_tooold(time_t m_time);
+size_t		get_size_max(t_entry *entry);
 
 /* list.c */
 char		**ll_generate(t_entry **head, DIR *dir, char *path, char *opts);
 
 /* display.c */
 void	display_wpr(t_entry *entry, char *options);
-void	display_entry(char *fname, struct stat *fstats, int l_mode);
+void	display_entry(char *fname, struct stat *fstats, int l_mode, size_t max_size);
 void	format_time(char *r_time, int too_old);
-void	format_size(int size);
+void	format_size(int size, size_t max_size);
 void	format_link(int link);
 
 /* getstat.c */
