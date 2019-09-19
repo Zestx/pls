@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 18:04:43 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/19 16:48:28 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/19 16:58:53 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static size_t		get_size_length(t_entry *entry)
 	return (length);
 }
 
-size_t			get_size_max(t_entry *head)
+size_t				get_size_max(t_entry *head)
 {
 	t_entry	*roam;
 	size_t	max_length;

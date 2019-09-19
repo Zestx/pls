@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:50:42 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 15:56:34 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:32:18 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	alpha_free_wpr(t_entry *entry, char *path)
 	free(path);
 }
 
-int	is_tooold(time_t m_time)
+int		is_tooold(time_t m_time)
 {
-	if (time(NULL) - m_time > 2629746)
+	if (time(NULL) - m_time > 15552000)
 		return (1);
 	return (0);
 }
 
-char *get_year(char *m_time)
+char	*get_year(char *m_time)
 {
 	char	*ptr;
 	char	*year;

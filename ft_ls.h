@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 16:21:15 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:34:02 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ size_t		get_size_max(t_entry *entry);
 char		**ll_generate(t_entry **head, DIR *dir, char *path, char *opts);
 
 /* display.c */
-void	display_wpr(t_entry *entry, char *options);
+void	display_wpr(t_entry *entry, char *options, size_t max_size);
 void	display_entry(char *fname, struct stat *fstats, int l_mode, size_t max_size);
 void	format_time(char *r_time, int too_old);
 void	format_size(int size, size_t max_size);

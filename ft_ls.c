@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 18:34:24 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:58:03 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	list(char *path, char *opts, int f_flag)
 	sorted = sort_ll(entries, ll_size(entries), path, opts);
 	if (f_flag)
 		ft_putchar('\n');
-	ft_putstr(path); ft_putendl(":");
+	ft_putstr(path);
+	ft_putendl(":");
 	ll_print(sorted, opts);
 	ll_free(sorted);
 	if (opts && ft_strchr(opts, 'R') && dirtab)

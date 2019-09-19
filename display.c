@@ -6,24 +6,21 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 16:19:38 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:33:46 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	display_wpr(t_entry *entry, char *opts)
+void	display_wpr(t_entry *entry, char *opts, size_t max_size)
 {
-	size_t	max_size_length;
-
-	max_size_length = get_size_max(entry);
 	if (opts && ft_strchr(opts, 'l'))
-		display_entry(entry->filename, &(entry->filestat), 1, max_size_length);
+		display_entry(entry->filename, &(entry->filestat), 1, max_size);
 	else
 		display_entry(entry->filename, &(entry->filestat), 0, 0);
 }
 
-void	display_entry(char *fname, struct stat *fstats, int l_mode, size_t	max_size)
+void	display_entry(char *fname, struct stat *fstats, int l_mode, size_t max_size)
 {
 	if (l_mode == 0)
 	{
@@ -34,13 +31,13 @@ void	display_entry(char *fname, struct stat *fstats, int l_mode, size_t	max_size
 	get_mode(fstats->st_mode);
 	ft_putstr("  ");
 	format_link(fstats->st_nlink);
-	ft_putstr("  ");
+	ft_putstr(" ");
 	ft_putstr(get_usrname(fstats->st_uid));
 	ft_putstr("  ");
 	ft_putstr(get_grpname(fstats->st_gid));
 	ft_putstr("  ");
 	format_size(fstats->st_size, max_size);
-	ft_putstr("  ");
+	ft_putstr(" ");
 	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
 	ft_putstr(fname);
 	ft_putchar('\n');
@@ -53,7 +50,10 @@ void	format_time(char *r_time, int too_old)
 	while (*r_time != ' ')
 		r_time++;
 	r_time++;
-	f_time = format_old(r_time);
+	if (too_old)
+		f_time = format_old(r_time);
+	else
+		f_time = format_yun(r_time);
 	ft_putstr(f_time);
 	ft_putchar(' ');
 	free(f_time);
