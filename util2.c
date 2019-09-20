@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:50:42 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 17:25:50 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 20:12:06 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_cursors(t_cursors *llc, t_entry *lst)
 void	alpha_free_wpr(t_entry *entry, char *path)
 {
 	free(entry->filename);
+	free(entry->path);
 	free(entry);
 	free(path);
 }
@@ -51,7 +52,23 @@ char	*get_year(char *m_time)
 		i++;
 	}
 	if (!(year = ft_strdup(ptr)))
-		return (NULL);
+		exit(EXIT_FAILURE);
 	return (year);
 }
 
+size_t	tablen(char **tab)
+{
+	char **roam;
+	size_t i;
+
+	if (!tab)
+		return (0);
+	roam = tab;
+	i = 0;
+	while (*roam)
+	{
+		i++;
+		roam++;
+	}
+	return (i);
+}

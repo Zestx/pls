@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 15:29:35 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 19:35:29 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void			ll_free(t_entry *head)
 	{
 		tmp = head->next;
 		free(head->filename);
+		free(head->path);
 		free(head);
 		head = tmp;
 	}

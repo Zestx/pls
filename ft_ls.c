@@ -6,13 +6,13 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 18:55:23 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:27:06 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	list(char *path, char *opts, int f_flag)
+static int	list(char *path, t_argstabs input, int f_flag)
 {
 	DIR				*dir;
 	t_entry			*entries;
@@ -27,21 +27,24 @@ static int	list(char *path, char *opts, int f_flag)
 		return (0);
 	}
 	entries = NULL;
-	dirtab = ll_generate(&entries, dir, path, opts);
-	sorted = sort_ll(entries, ll_size(entries), path, opts);
+	dirtab = ll_generate(&entries, dir, path, input.opts);
+	sorted = sort_ll(entries, ll_size(entries), path, input.opts);
 	if (f_flag)
 		ft_putchar('\n');
 	f_flag = 1;
-	ft_putstr(path);
-	ft_putendl(":");
-	ll_print(sorted, opts);
+	if (tablen(input.args) > 1)
+	{
+		ft_putstr(path);
+		ft_putendl(":");
+	}
+	ll_print(sorted, input.opts);
 	ll_free(sorted);
-	if (opts && ft_strchr(opts, 'R') && dirtab)
+	if (input.opts && ft_strchr(input.opts, 'R') && dirtab)
 	{
 		roam = dirtab;
 		while (*roam)
 		{
-			list(*roam, opts, f_flag);
+			list(*roam, input, f_flag);
 			roam++;
 		}
 	}
@@ -85,7 +88,7 @@ static int	ls_dispatch(t_argstabs input)
 	reg_list = NULL;
 	if (!input.args)
 	{
-		list(".", input.opts, f_flag);
+		list(".", input, f_flag);
 		return (1);
 	}
 	sort_args(&input.args, &input);
@@ -102,7 +105,7 @@ static int	ls_dispatch(t_argstabs input)
 		roam = dir_list;
 		while (*roam)
 		{
-			list(*roam, input.opts, f_flag);
+			list(*roam, input, f_flag);
 			f_flag = 1;
 			roam++;
 		}
@@ -126,5 +129,6 @@ int			main(int argc, char **argv)
 	if (!check_opt(input.opts, input.args))
 		return (1);
 	ls_dispatch(input);
+	ft_sfree(input.opts);
 	return (0);
 }

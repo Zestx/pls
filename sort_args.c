@@ -6,15 +6,11 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 19:02:13 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:41:07 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-/*
-** missing frees!
-*/
 
 static int	swap_args(char ***args, char **smaller, size_t i)
 {
@@ -23,22 +19,13 @@ static int	swap_args(char ***args, char **smaller, size_t i)
 
 	args_ptr = *args;
 	if (!(swaptmp = ft_strdup(args_ptr[i])))
-	{
-		ft_freetab(args_ptr);
-		return (0);
-	}
+		exit(EXIT_FAILURE);
 	ft_sfree(args_ptr[i]);
 	if (!(args_ptr[i] = ft_strdup(*smaller)))
-	{
-		ft_freetab(args_ptr + 1);
-		return (0);
-	}
-	ft_sfree(*smaller);
+		exit(EXIT_FAILURE);
+	//ft_sfree(*smaller);
 	if (!(*smaller = ft_strdup(swaptmp)))
-	{
-		ft_freetab(args_ptr);
-		return (0);
-	}
+		exit(EXIT_FAILURE);	
 	ft_sfree(swaptmp);
 	return (1);
 }

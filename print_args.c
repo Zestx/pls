@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:58:46 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 17:24:20 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 20:30:19 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		print_args(char **reglist, char *opts)
 		else
 			display_entry(path, &st_buff, 0, pad);
 		roam++;
+		free(path);
 	}
 	return (1);
 }

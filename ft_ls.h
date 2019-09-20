@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 18:52:29 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:13:38 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void        init_cursors(t_cursors *llc, t_entry *lst);
 void        alpha_free_wpr(t_entry *entry, char *path);
 int			is_tooold(time_t m_time);
 char		*get_year(char *m_time);
+size_t		tablen(char **tab);
 
 /* ll_util.c */
 t_entry		*ll_append_node(t_entry *ll_head, char *path, char *fname);
