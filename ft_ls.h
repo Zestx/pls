@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 16:48:46 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 17:25:47 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void		ll_print(t_entry *head, char *opts);
 size_t		ll_size(t_entry *head);
 size_t		count_ll_blocks(t_entry *head);
 int			is_tooold(time_t m_time);
+t_maxlen	get_len(struct stat filestat);
 t_maxlen	get_maxlen(t_entry *entry);
 
 /* list.c */

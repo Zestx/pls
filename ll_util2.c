@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 18:04:43 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/20 16:42:44 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 17:33:52 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,17 @@ t_maxlen			get_maxlen(t_entry *head)
 			ml.size_maxlen = size_length;
 		roam = roam->next;
 	}
+	return (ml);
+}
+
+t_maxlen			get_len(struct stat filestat)
+{
+	t_maxlen ml;
+
+	ml.lnk_maxlen = ft_count_digits(filestat.st_nlink);
+	ml.uid_maxlen = ft_strlen(get_usrname(filestat.st_uid));
+	ml.grp_maxlen = ft_strlen(get_grpname(filestat.st_gid));	
+	ml.size_maxlen = ft_count_digits(filestat.st_size);
+	
 	return (ml);
 }
