@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 18:39:38 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:55:23 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 	while (*roam)
 	{
 		if (stat(*roam, &st_buff))
-		{
 			perror(*roam);
-		}
 		else if (S_ISDIR(st_buff.st_mode))
 		{
 			if (!(check_update(dir_list, *reg_list, *roam, &input)))

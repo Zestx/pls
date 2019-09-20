@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 14:27:10 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 19:02:13 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,7 @@ static char	**revsort_args(char **args)
 	if (!args)
 		return (NULL);
 	if (!(sort = malloc(sizeof(sort) * (ft_tablen(args) + 1))))
-	{
-		free(args);
-		return (NULL);
-	}
+		exit(EXIT_FAILURE);
 	sort[ft_tablen(args)] = NULL;
 	while (i < ft_tablen(args) - 1)
 		i++;

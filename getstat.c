@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:48:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 14:07:09 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:53:57 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	get_mode(mode_t file_mode)
 	int		i;
 	char	*mode_str;
 
-	mode_str = malloc(11);
+	if (!(mode_str = malloc(11)))
+		exit(EXIT_FAILURE);
 	i = 0;
 	while (i < 10)
 	{

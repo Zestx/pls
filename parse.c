@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 14:19:33 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 19:01:35 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static char	*update_options(char *opt_list, char *n_opt)
 	if (!opt_list)
 	{
 		if (!(n_list = malloc(ft_strlen(n_opt) + 1)))
-			return (NULL);
+			exit(EXIT_FAILURE);
 	}
 	else
 	{
 		if (!(n_list = malloc(ft_strlen(opt_list) + ft_strlen(n_opt) + 1)))
-			return (NULL);
+			exit(EXIT_FAILURE);
 	}
 	n_list = refill_options(opt_list, n_opt, n_list);
 	if (opt_list)
@@ -84,7 +84,7 @@ char		**update_args(char **arg_list, char *n_arg)
 
 	tab_len = ft_tablen(arg_list);
 	if (!(n_list = malloc(sizeof(n_list) * (tab_len + 2))))
-		return (NULL);
+		exit(EXIT_FAILURE);
 	if (!(n_list = refill(arg_list, n_arg, n_list, tab_len)))
 		return (NULL);
 	ft_freetab(arg_list);

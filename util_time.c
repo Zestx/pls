@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:24:38 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 17:23:56 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 19:03:41 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*format_old(char *r_time)
 
 	i = 0;
 	spa_count = 0;
-	f_str = malloc(14);
+	if (!(f_str = malloc(14)))
+		exit(EXIT_FAILURE);
 	year = get_year(r_time);
 	while (i < 6)
 	{
@@ -51,7 +52,8 @@ char	*format_yun(char *r_time)
 
 	i = 0;
 	col_count = 0;
-	f_str = malloc(15);
+	if (!(f_str = malloc(15)))
+		exit(EXIT_FAILURE);
 	while (1)
 	{
 		if (r_time[i] == ':')

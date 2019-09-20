@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 17:00:35 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/20 18:25:29 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/20 18:53:46 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ void	print_fname(char *fname, char *path, struct stat *fstats)
 	size_t	buffer;
 	char	*buf;
 
-	buf = malloc(sizeof(buf) * 1024);
-	buffer = 1024;
 	if (S_ISLNK(fstats->st_mode))
 	{
+		if (!(buf = malloc(sizeof(buf) * 1024)))
+			exit(EXIT_FAILURE);
+		buffer = 4096;
 		readlink(path, buf, buffer);
 		ft_putstr(fname);
 		ft_putstr(" -> ");
