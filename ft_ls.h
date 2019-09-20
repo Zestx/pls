@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 17:34:02 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 16:48:46 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ typedef struct  s_cursors
 
 }               t_cursors;
 
+typedef struct	s_maxlen
+{
+	size_t		lnk_maxlen;
+	size_t		uid_maxlen;
+	size_t		grp_maxlen;
+	size_t		size_maxlen;
+}				t_maxlen;
+
 /*print_args.c*/
 int     print_args(char **reglist, char *opts);
 
@@ -82,17 +90,18 @@ void		ll_print(t_entry *head, char *opts);
 size_t		ll_size(t_entry *head);
 size_t		count_ll_blocks(t_entry *head);
 int			is_tooold(time_t m_time);
-size_t		get_size_max(t_entry *entry);
+t_maxlen	get_maxlen(t_entry *entry);
 
 /* list.c */
 char		**ll_generate(t_entry **head, DIR *dir, char *path, char *opts);
 
 /* display.c */
-void	display_wpr(t_entry *entry, char *options, size_t max_size);
-void	display_entry(char *fname, struct stat *fstats, int l_mode, size_t max_size);
+void	display_wpr(t_entry *entry, char *options, t_maxlen data);
+void	display_entry(char *fname, struct stat *fstats, int l_mode, t_maxlen data);
 void	format_time(char *r_time, int too_old);
-void	format_size(int size, size_t max_size);
-void	format_link(int link);
+void	format_size(long size, t_maxlen data);
+void	format_link(int link, t_maxlen pad);
+void	format_name(struct stat *fstat, t_maxlen pad);
 
 /* getstat.c */
 char	*get_usrname(uid_t user_id);

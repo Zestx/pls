@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 16:08:23 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/19 18:59:33 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,5 @@ t_entry			*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 		sorted_lst = ll_sort(sorted_lst, ll_size, cwd, "t");
 	if (opts && ft_strchr(opts, 'r'))
 		sorted_lst = ll_revrssort(sorted_lst, cwd);
-	printf("\n MAX SIZE = %zu\n", get_size_max(sorted_lst));
 	return (sorted_lst);
 }

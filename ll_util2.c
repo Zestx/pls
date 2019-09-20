@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 18:04:43 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/19 16:58:53 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 16:42:44 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,51 @@ static size_t		get_size_length(t_entry *entry)
 	return (length);
 }
 
-size_t				get_size_max(t_entry *head)
+static size_t		get_link_length(t_entry *entry)
+{
+	size_t		length;
+
+	if (!entry)
+		return (0);
+	length = ft_count_digits(entry->filestat.st_nlink);
+	return (length);
+}
+
+t_maxlen			get_maxlen(t_entry *head)
 {
 	t_entry	*roam;
-	size_t	max_length;
+	t_maxlen ml;
+	size_t  lnk_length;
+	size_t	uid_length;
+	size_t	grp_length;
 	size_t	size_length;
 
+	lnk_length = 0;
+	uid_length = 0;
+	grp_length = 0;
+	size_length = 0;
+	ml.lnk_maxlen = 0;
+	ml.uid_maxlen = 0;
+	ml.grp_maxlen = 0;
+	ml.size_maxlen = 0;
 	if (!head)
-		return (0);
+		return (ml);
 	roam = head;
-	max_length = 0;
 	while (roam)
 	{
+		lnk_length = get_link_length(roam);
+		uid_length = ft_strlen(get_usrname(roam->filestat.st_uid));
+		grp_length = ft_strlen(get_grpname(roam->filestat.st_gid));	
 		size_length = get_size_length(roam);
-		if (max_length < size_length)
-			max_length = size_length;
+		if (ml.lnk_maxlen < lnk_length)
+			ml.lnk_maxlen = lnk_length;
+		if (ml.uid_maxlen < uid_length)
+			ml.uid_maxlen = uid_length;
+		if (ml.grp_maxlen < grp_length)
+			ml.grp_maxlen = grp_length;
+		if (ml.size_maxlen < size_length)
+			ml.size_maxlen = size_length;
 		roam = roam->next;
 	}
-	return (max_length);
+	return (ml);
 }

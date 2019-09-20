@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 17:36:22 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 15:29:35 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,14 @@ void			ll_free(t_entry *head)
 
 void			ll_print(t_entry *head, char *opts)
 {
-	t_entry *roam;
-	size_t	max_size;
+	t_entry 	*roam;
+	t_maxlen	pad;
 
 	if (!head)
 		return ;
-	max_size = 0;
 	if (opts && ft_strchr(opts, 'l'))
 	{
-		max_size = get_size_max(head);
+		pad = get_maxlen(head);
 		ft_putstr("total ");
 		ft_putnbr(count_ll_blocks(head));
 		ft_putchar('\n');
@@ -102,7 +101,7 @@ void			ll_print(t_entry *head, char *opts)
 	roam = head;
 	while (roam)
 	{
-		display_wpr(roam, opts, max_size);
+		display_wpr(roam, opts, pad);
 		roam = roam->next;
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 15:11:43 by qbackaer          #+#    #+#             */
-/*   Updated: 2018/10/30 13:24:56 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:57:49 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_digits(int n)
+static int	count_digits(long n)
 {
 	int count;
 
@@ -22,21 +22,21 @@ static int	count_digits(int n)
 	return (count);
 }
 
-static int	isnegative(int n)
+static int	isnegative(long n)
 {
 	if (n < 0)
 		return (1);
 	return (0);
 }
 
-char		*ft_itoa(int n)
+char		*ft_itoa(long n)
 {
 	char	*number;
 	int		len;
 	int		neg;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
+//	if (n == -2147483648)
+//		return (ft_strdup("-2147483648"));
 	if ((neg = isnegative(n)) == 1)
 		n *= -1;
 	len = count_digits(n) + 1 + neg;

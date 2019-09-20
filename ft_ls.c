@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 16:58:03 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 16:02:34 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ int			main(int argc, char **argv)
 {
 	t_argstabs input;
 
-	printf("TIME: %ld\n", time(NULL));
 	input.args = NULL;
 	input.opts = NULL;
 	if (!parse(argc, argv, &input.opts, &input.args))
