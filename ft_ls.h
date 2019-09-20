@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 17:25:47 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:18:13 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ void	format_time(char *r_time, int too_old);
 void	format_size(long size, t_maxlen data);
 void	format_link(int link, t_maxlen pad);
 void	format_name(struct stat *fstat, t_maxlen pad);
+
+/* display2.c */
+void	display_entry_l(t_entry *entry, struct stat *fstats, int l_mode, t_maxlen pad);
+void	print_fname(char *fname, char *path, struct stat *fstats);
 
 /* getstat.c */
 char	*get_usrname(uid_t user_id);

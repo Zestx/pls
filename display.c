@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 17:31:29 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:17:06 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	display_wpr(t_entry *entry, char *opts, t_maxlen pad)
 {
 	if (opts && ft_strchr(opts, 'l'))
-		display_entry(entry->filename, &(entry->filestat), 1, pad);
+		display_entry_l(entry, &(entry->filestat), 1, pad);
 	else
-		display_entry(entry->filename, &(entry->filestat), 0, pad);
+		display_entry_l(entry, &(entry->filestat), 0, pad);
 }
 
 void	display_entry(char *fname, struct stat *fstats, int l_mode, t_maxlen pad)
@@ -37,7 +37,7 @@ void	display_entry(char *fname, struct stat *fstats, int l_mode, t_maxlen pad)
 	format_size(fstats->st_size, pad);
 	ft_putstr(" ");
 	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
-	ft_putstr(fname);
+	print_fname(fname, fname, fstats);
 	ft_putchar('\n');
 }
 
