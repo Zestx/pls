@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 18:04:43 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/20 17:33:52 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:19:10 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static size_t		get_block_size(char *path)
 
 	if (!path)
 		return (0);
-	if (stat(path, &attr))
+	if (lstat(path, &attr))
 		return (0);
 	blocks = attr.st_blocks;
 	return (blocks);
@@ -81,12 +81,12 @@ static size_t		get_link_length(t_entry *entry)
 
 t_maxlen			get_maxlen(t_entry *head)
 {
-	t_entry	*roam;
-	t_maxlen ml;
-	size_t  lnk_length;
-	size_t	uid_length;
-	size_t	grp_length;
-	size_t	size_length;
+	t_entry		*roam;
+	t_maxlen	ml;
+	size_t		lnk_length;
+	size_t		uid_length;
+	size_t		grp_length;
+	size_t		size_length;
 
 	lnk_length = 0;
 	uid_length = 0;
@@ -103,7 +103,7 @@ t_maxlen			get_maxlen(t_entry *head)
 	{
 		lnk_length = get_link_length(roam);
 		uid_length = ft_strlen(get_usrname(roam->filestat.st_uid));
-		grp_length = ft_strlen(get_grpname(roam->filestat.st_gid));	
+		grp_length = ft_strlen(get_grpname(roam->filestat.st_gid));
 		size_length = get_size_length(roam);
 		if (ml.lnk_maxlen < lnk_length)
 			ml.lnk_maxlen = lnk_length;
@@ -124,8 +124,7 @@ t_maxlen			get_len(struct stat filestat)
 
 	ml.lnk_maxlen = ft_count_digits(filestat.st_nlink);
 	ml.uid_maxlen = ft_strlen(get_usrname(filestat.st_uid));
-	ml.grp_maxlen = ft_strlen(get_grpname(filestat.st_gid));	
+	ml.grp_maxlen = ft_strlen(get_grpname(filestat.st_gid));
 	ml.size_maxlen = ft_count_digits(filestat.st_size);
-	
 	return (ml);
 }

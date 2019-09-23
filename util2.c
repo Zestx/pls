@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:50:42 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 20:12:06 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:31:55 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ char	*get_year(char *m_time)
 
 size_t	tablen(char **tab)
 {
-	char **roam;
-	size_t i;
+	char	**roam;
+	size_t	i;
 
 	if (!tab)
 		return (0);

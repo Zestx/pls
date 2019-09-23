@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 19:15:40 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 19:02:46 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/23 18:26:46 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ char	*subdir_path(const char *current_path, const char *subdir)
 	if (!(full_path = malloc(ft_strlen(current_path) + ft_strlen(subdir) + 2)))
 		exit(EXIT_FAILURE);
 	i = 0;
-	while (current_path[i] != '\0')
+	if (subdir[0] != '/')
 	{
-		full_path[i] = current_path[i];
+		while (current_path[i] != '\0')
+		{
+			full_path[i] = current_path[i];
+			i++;
+		}
+		full_path[i] = '/';
 		i++;
 	}
-	full_path[i] = '/';
-	i++;
 	j = 0;
 	while (subdir[j] != '\0')
 	{

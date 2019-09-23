@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 20:13:38 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:22:36 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,15 @@ t_maxlen	get_maxlen(t_entry *entry);
 char		**ll_generate(t_entry **head, DIR *dir, char *path, char *opts);
 
 /* display.c */
-void	display_wpr(t_entry *entry, char *options, t_maxlen data);
-void	display_entry(char *fname, struct stat *fstats, int l_mode, t_maxlen data);
+void	display_wpr(t_entry *ent, char *options, t_maxlen data);
+void	display_entry(char *fname, struct stat *fstats, int l, t_maxlen data);
 void	format_time(char *r_time, int too_old);
 void	format_size(long size, t_maxlen data);
 void	format_link(int link, t_maxlen pad);
 void	format_name(struct stat *fstat, t_maxlen pad);
 
 /* display2.c */
-void	display_entry_l(t_entry *entry, struct stat *fstats, int l_mode, t_maxlen pad);
+void	display_entry_l(t_entry *ent, struct stat *fstats, int l, t_maxlen pad);
 void	print_fname(char *fname, char *path, struct stat *fstats);
 
 /* getstat.c */

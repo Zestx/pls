@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:51:07 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 19:01:35 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/23 19:37:36 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,7 @@ static char	**refill(char **arg_list, char *n_arg, char **n_list, size_t len)
 	while (len && *arg_list != NULL)
 	{
 		if (!(*ptr = ft_strdup(*arg_list)))
-		{
-			ft_freetab(n_list);
-			ft_freetab(sav);
-			return (NULL);
-		}
+			exit(EXIT_FAILURE);
 		arg_list++;
 		ptr++;
 	}
@@ -85,8 +81,7 @@ char		**update_args(char **arg_list, char *n_arg)
 	tab_len = ft_tablen(arg_list);
 	if (!(n_list = malloc(sizeof(n_list) * (tab_len + 2))))
 		exit(EXIT_FAILURE);
-	if (!(n_list = refill(arg_list, n_arg, n_list, tab_len)))
-		return (NULL);
+	n_list = refill(arg_list, n_arg, n_list, tab_len);
 	ft_freetab(arg_list);
 	return (n_list);
 }
@@ -107,15 +102,11 @@ int			parse(int argc, char **argv, char **opt_list, char ***arg_list)
 			continue ;
 		}
 		if (!stop_opt && argv[i][0] == '-' && ft_strlen(argv[i]) > 1)
-		{
-			if (!(*opt_list = update_options(*opt_list, argv[i])))
-				return (0);
-		}
+			*opt_list = update_options(*opt_list, argv[i]);
 		else
 		{
 			stop_opt = 1;
-			if (!(*arg_list = update_args(*arg_list, argv[i])))
-				return (0);
+			*arg_list = update_args(*arg_list, argv[i]);
 		}
 		i++;
 	}

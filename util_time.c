@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:24:38 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 20:00:17 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:35:04 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,19 @@ char	*format_old(char *r_time)
 	int		j;
 	int		spa_count;
 
-	i = 0;
+	i = -1;
 	spa_count = 0;
 	if (!(f_str = malloc(14)))
 		exit(EXIT_FAILURE);
 	year = get_year(r_time);
-	while (i < 6)
-	{
+	while (++i < 6)
 		f_str[i] = r_time[i];
-		i++;
-	}
 	f_str[i] = ' ';
 	f_str[i + 1] = ' ';
 	i += 2;
 	j = 0;
 	while (j < 4)
-	{
-		f_str[i] = year[j];
-		i++;
-		j++;
-	}
+		f_str[i++] = year[j++];
 	f_str[i] = '\0';
 	free(year);
 	return (f_str);

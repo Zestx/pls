@@ -6,17 +6,17 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 17:00:35 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/20 18:53:46 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/23 19:22:38 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	display_entry_l(t_entry *entry, struct stat *fstats, int l_mode, t_maxlen pad)
+void	display_entry_l(t_entry *ent, struct stat *fstats, int l, t_maxlen pad)
 {
-	if (l_mode == 0)
+	if (l == 0)
 	{
-		ft_putstr(entry->filename);
+		ft_putstr(ent->filename);
 		ft_putchar('\n');
 		return ;
 	}
@@ -29,7 +29,7 @@ void	display_entry_l(t_entry *entry, struct stat *fstats, int l_mode, t_maxlen p
 	format_size(fstats->st_size, pad);
 	ft_putstr(" ");
 	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
-	print_fname(entry->filename, entry->path, fstats);
+	print_fname(ent->filename, ent->path, fstats);
 	ft_putchar('\n');
 }
 

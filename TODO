@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/09/19 19:01:35 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/09/23 20:43:09 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -15,27 +15,25 @@
    
   THINGS TO DO:
 
-	1 	- Check symbolic links behavior (-l, -R)
+	0	- path display before listing
 
-	2 	- alignement of the stats on the long-display format (-l).
+	1   - check if lstat / stat are at the right place.
 
-	4 	- ERROR CHECKING & MANAGEMENT in general
-		(clean exit, all free, adapted error message).
-		! - It seems like we only need to do a clean exit in case of memory error (!malloc),
-			no laborious free etc..
+	3	- problem with args treatment/sorting. Should be easy to solve.
 
-	5 	- Norm, Organization, good variable, files and functions names
+	2 	- ERROR CHECKING & MANAGEMENT in general
 
+	3 	- Norm, Organization, good variable, files and functions names
 
 	BUGS:
 		- leak on update_args allocated stuffs.
 
 	BONUS ideas (see 'man ls'):
-		- ACL display on -l mode
+1		- ACL display on -l mode
 		- [-G] colors
 		- [-e] print full ACL
-		- [-i] print inode number
+2		- [-i] print inode number
 		- [-h] human-readable sizes
 		- [-n] display uid and gid numerically
 		- [-H][-L][-P] symbolic links behavior
-		- [-A] like -a but doesn't display the "." and ".."
+3		- [-A] like -a but doesn't display the "." and ".."

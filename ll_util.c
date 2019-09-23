@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 19:35:29 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:17:20 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static t_entry	*ll_create_node(char *path, char *fname)
 		exit(EXIT_FAILURE);
 	if (lstat(path, &st_buff))
 	{
-		printf("LL_CREATE_NODE ERROR\n");
 		perror(path);
 		return (NULL);
 	}
@@ -87,7 +86,7 @@ void			ll_free(t_entry *head)
 
 void			ll_print(t_entry *head, char *opts)
 {
-	t_entry 	*roam;
+	t_entry		*roam;
 	t_maxlen	pad;
 
 	if (!head)

@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 13:58:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/18 14:06:29 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:18:43 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,12 @@ char			**ll_generate(t_entry **head, DIR *dir, char *path, char *opts)
 	new_path = NULL;
 	while ((entry = readdir(dir)))
 	{
-		if (!(new_path = subdir_path(path, entry->d_name)))
-		{
-			ft_freetab(dirtab);
-			return (NULL);
-		}
+		new_path = subdir_path(path, entry->d_name);
 		if (entry->d_name[0] != '.' || (opts && ft_strchr(opts, 'a')))
 		{
-			if (!(*head = ll_append_node(*head, new_path, entry->d_name)))
-			{
-				ft_freetab(dirtab);
-				ft_sfree(new_path);
-				return (NULL);
-			}
+			*head = ll_append_node(*head, new_path, entry->d_name);
 			if (isdir(*head))
-				if (!(dirtab = update_args(dirtab, new_path)))
-				{
-					ft_freetab(dirtab);
-					ft_sfree(new_path);
-					return (NULL);
-				}
+				dirtab = update_args(dirtab, new_path);
 		}
 		ft_sfree(new_path);
 	}

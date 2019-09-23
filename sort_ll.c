@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 19:47:25 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:31:26 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,10 @@ static t_entry	*ll_sort(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 			llc.wkst_p->next = llc.wkst_c->next;
 		alpha_free_wpr(llc.wkst_c, path);
 		count++;
-		//free(path);
 	}
 	path = subdir_path(cwd, lst->filename);
 	sorted_lst = ll_append_node(sorted_lst, path, lst->filename);
-	ll_free(lst);	
+	ll_free(lst);
 	free(path);
 	return (sorted_lst);
 }
@@ -86,13 +85,12 @@ t_entry			*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 	t_entry		*sorted_lst;
 
 	if (!lst)
-		return NULL;
+		return (NULL);
 	sorted_lst = NULL;
 	sorted_lst = ll_sort(lst, ll_size, cwd, "");
 	if (opts && ft_strchr(opts, 't'))
 		sorted_lst = ll_sort(sorted_lst, ll_size, cwd, "t");
 	if (opts && ft_strchr(opts, 'r'))
 		sorted_lst = ll_revrssort(sorted_lst, cwd);
-	//ll_free(lst);
 	return (sorted_lst);
 }

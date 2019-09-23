@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 20:41:07 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:36:57 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static int	swap_args(char ***args, char **smaller, size_t i)
 	ft_sfree(args_ptr[i]);
 	if (!(args_ptr[i] = ft_strdup(*smaller)))
 		exit(EXIT_FAILURE);
-	//ft_sfree(*smaller);
+	ft_sfree(*smaller);
 	if (!(*smaller = ft_strdup(swaptmp)))
-		exit(EXIT_FAILURE);	
+		exit(EXIT_FAILURE);
 	ft_sfree(swaptmp);
 	return (1);
 }
@@ -116,17 +116,15 @@ static char	**revsort_args(char **args)
 
 int			sort_args(char ***raw, t_argstabs *input)
 {
-	if (input->opts && ft_strchr(input->opts, 't'))
-	{
-		if (!(timesort_args(&*raw)))
-			return (0);
-	}
-	else if (!(alphasort_args(&*raw)))
+	if (!(alphasort_args(&*raw)))
 	{
 		ft_freetab(input->args);
 		ft_sfree(input->opts);
 		return (0);
 	}
+	if (input->opts && ft_strchr(input->opts, 't'))
+		if (!(timesort_args(&*raw)))
+			return (0);
 	if (input->opts && ft_strchr(input->opts, 'r'))
 	{
 		if (!(*raw = revsort_args(*raw)))

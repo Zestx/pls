@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:58:46 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 20:30:19 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:39:51 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int		print_args(char **reglist, char *opts)
 
 	if (!reglist || !*reglist)
 		return (0);
+	printf("tablen: %zu\n", tablen(reglist));
 	roam = reglist;
-	while (*roam)
 	{
 		path = subdir_path(".", *roam);
 		if (lstat(path, &st_buff))

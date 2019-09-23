@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/20 20:27:06 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:42:19 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,19 @@ static int	list(char *path, t_argstabs input, int f_flag)
 	if (f_flag)
 		ft_putchar('\n');
 	f_flag = 1;
-	if (tablen(input.args) > 1)
-	{
-		ft_putstr(path);
-		ft_putendl(":");
-	}
+	printf("%s: \n", path);
 	ll_print(sorted, input.opts);
 	ll_free(sorted);
+	roam = dirtab;
 	if (input.opts && ft_strchr(input.opts, 'R') && dirtab)
-	{
-		roam = dirtab;
 		while (*roam)
-		{
-			list(*roam, input, f_flag);
-			roam++;
-		}
-	}
+			list(*roam++, input, f_flag);
 	ft_freetab(dirtab);
 	closedir(dir);
 	return (1);
 }
 
-static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
+static void	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 {
 	char		**roam;
 	struct stat	st_buff;
@@ -61,19 +52,28 @@ static int	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 	roam = input.args;
 	while (*roam)
 	{
-		if (stat(*roam, &st_buff))
-			perror(*roam);
-		else if (S_ISDIR(st_buff.st_mode))
+		if (input.opts && ft_strchr(input.opts, 'l'))
 		{
-			if (!(check_update(dir_list, *reg_list, *roam, &input)))
-				return (0);
+			if (lstat(*roam, &st_buff))
+			{
+				perror(*roam);
+				roam++;
+				continue ;
+			}
 		}
-		else if (!(check_update(reg_list, *dir_list, *roam, &input)))
-			return (0);
+		else if (stat(*roam, &st_buff))
+		{
+			perror(*roam);
+			roam++;
+			continue;
+		}
+		if (S_ISDIR(st_buff.st_mode))
+			*dir_list = update_args(*dir_list, *roam);
+		else
+			*reg_list = update_args(*reg_list, *roam);
 		roam++;
 	}
 	ft_freetab(input.args);
-	return (1);
 }
 
 static int	ls_dispatch(t_argstabs input)
@@ -86,30 +86,20 @@ static int	ls_dispatch(t_argstabs input)
 	f_flag = 0;
 	dir_list = NULL;
 	reg_list = NULL;
-	if (!input.args)
-	{
-		list(".", input, f_flag);
-		return (1);
-	}
 	sort_args(&input.args, &input);
-	if (!split_args(input, &dir_list, &reg_list))
-	{
-		ft_freetab(dir_list);
-		ft_freetab(reg_list);
-		return (0);
-	}
+	if (!input.args)
+		input.args = update_args(input.args, ".");
+	split_args(input, &dir_list, &reg_list);
+	ft_printab(reg_list);
 	if (print_args(reg_list, input.opts))
 		f_flag = 1;
+	roam = dir_list;
 	if (dir_list)
-	{
-		roam = dir_list;
 		while (*roam)
 		{
-			list(*roam, input, f_flag);
+			list(*roam++, input, f_flag);
 			f_flag = 1;
-			roam++;
 		}
-	}
 	ft_freetab(dir_list);
 	ft_freetab(reg_list);
 	return (1);
