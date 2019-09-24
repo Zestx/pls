@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 19:15:40 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/23 18:26:46 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:05:57 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ long	get_time(char *path)
 	struct stat	attr;
 	time_t		m_time;
 
-	if (stat(path, &attr))
+	if (lstat(path, &attr))
 		return (0);
 	m_time = attr.st_mtime;
 	return (m_time);

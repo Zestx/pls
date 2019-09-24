@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 13:58:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/23 19:18:43 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 15:35:28 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char			**ll_generate(t_entry **head, DIR *dir, char *path, char *opts)
 		new_path = subdir_path(path, entry->d_name);
 		if (entry->d_name[0] != '.' || (opts && ft_strchr(opts, 'a')))
 		{
-			*head = ll_append_node(*head, new_path, entry->d_name);
+			*head = ll_append_node(*head, new_path, entry->d_name, opts);
 			if (isdir(*head))
 				dirtab = update_args(dirtab, new_path);
 		}

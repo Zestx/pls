@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/23 19:22:59 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:30:26 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ void	format_time(char *r_time, int too_old)
 void	format_size(long size, t_maxlen pad)
 {
 	char	*raw_size;
-	int		curr_size;
+	size_t	curr_size;
 
 	curr_size = ft_count_digits(size);
-	while (pad.size_maxlen - curr_size > 0)
+	while (curr_size < pad.size_maxlen)
 	{
 		ft_putchar(' ');
-		pad.size_maxlen--;
+		curr_size++;
 	}
 	raw_size = ft_itoa(size);
 	ft_putstr(raw_size);

@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/09/23 20:43:09 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/09/24 16:19:44 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -17,13 +17,9 @@
 
 	0	- path display before listing
 
-	1   - check if lstat / stat are at the right place.
+	1 	- ERROR CHECKING & MANAGEMENT in general
 
-	3	- problem with args treatment/sorting. Should be easy to solve.
-
-	2 	- ERROR CHECKING & MANAGEMENT in general
-
-	3 	- Norm, Organization, good variable, files and functions names
+	2 	- Norm, Organization, good variable, files and functions names
 
 	BUGS:
 		- leak on update_args allocated stuffs.
@@ -32,7 +28,7 @@
 1		- ACL display on -l mode
 		- [-G] colors
 		- [-e] print full ACL
-2		- [-i] print inode number
+		- [-i] print inode number
 		- [-h] human-readable sizes
 		- [-n] display uid and gid numerically
 		- [-H][-L][-P] symbolic links behavior

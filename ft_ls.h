@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/23 19:22:36 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 15:35:53 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ char		*get_year(char *m_time);
 size_t		tablen(char **tab);
 
 /* ll_util.c */
-t_entry		*ll_append_node(t_entry *ll_head, char *path, char *fname);
-t_entry		*ll_push_node(t_entry *ll_head, char *path, char *fname);
+t_entry		*ll_append_node(t_entry *ll_head, char *path, char *fname, char *opts);
+t_entry		*ll_push_node(t_entry *ll_head, char *path, char *fname, char *opts);
 void		ll_free(t_entry *ll_head);
 void		ll_print(t_entry *head, char *opts);
 

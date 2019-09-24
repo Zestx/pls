@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/23 20:42:19 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:41:26 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ static int	ls_dispatch(t_argstabs input)
 	if (!input.args)
 		input.args = update_args(input.args, ".");
 	split_args(input, &dir_list, &reg_list);
-	ft_printab(reg_list);
 	if (print_args(reg_list, input.opts))
 		f_flag = 1;
 	roam = dir_list;

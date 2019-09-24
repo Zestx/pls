@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:58:46 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/23 20:39:51 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:43:08 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,22 @@
 int		print_args(char **reglist, char *opts)
 {
 	char		**roam;
-	char		*path;
 	struct stat	st_buff;
 	t_maxlen	pad;
 
 	if (!reglist || !*reglist)
 		return (0);
-	printf("tablen: %zu\n", tablen(reglist));
+
 	roam = reglist;
+	while (*roam)
 	{
-		path = subdir_path(".", *roam);
-		if (lstat(path, &st_buff))
-		{
-			perror(path);
-			return (0);
-		}
+		lstat(*roam, &st_buff);
 		pad = get_len(st_buff);
 		if (opts && ft_strchr(opts, 'l'))
-			display_entry(path, &st_buff, 1, pad);
+			display_entry(*roam, &st_buff, 1, pad);
 		else
-			display_entry(path, &st_buff, 0, pad);
+			display_entry(*roam, &st_buff, 0, pad);
 		roam++;
-		free(path);
 	}
 	return (1);
 }
