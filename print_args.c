@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:58:46 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/24 16:43:08 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 17:30:25 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ int		print_args(char **reglist, char *opts)
 
 	if (!reglist || !*reglist)
 		return (0);
-
+	pad = get_maxlen_args(reglist);
 	roam = reglist;
 	while (*roam)
 	{
-		lstat(*roam, &st_buff);
-		pad = get_len(st_buff);
 		if (opts && ft_strchr(opts, 'l'))
 			display_entry(*roam, &st_buff, 1, pad);
 		else

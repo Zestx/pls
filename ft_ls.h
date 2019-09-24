@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/24 15:35:53 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 17:29:57 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,8 @@ void	get_perm(char *buffer, mode_t file_mode);
 /* util_time.c */
 char	*format_yun(char *r_time);
 char	*format_old(char *r_time);
+
+/* args_max.c */
+t_maxlen	get_maxlen_args(char **args);
 
 #endif
