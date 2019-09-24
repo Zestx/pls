@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 18:04:43 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/24 17:33:45 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/24 17:47:54 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_maxlen			get_maxlen_args(char **args)
 			ml.grp_maxlen = grp_length;
 		if (ml.size_maxlen < size_length)
 			ml.size_maxlen = size_length;
-		*roam++;
+		roam++;
 	}
 	return (ml);
 }
