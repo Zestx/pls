@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/24 16:41:26 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:23:22 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	ls_dispatch(t_argstabs input)
 	f_flag = 0;
 	dir_list = NULL;
 	reg_list = NULL;
-	sort_args(&input.args, &input);
+	input.args = sort_args(input.args, &input);
 	if (!input.args)
 		input.args = update_args(input.args, ".");
 	split_args(input, &dir_list, &reg_list);

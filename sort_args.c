@@ -6,13 +6,54 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/24 16:23:31 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:48:20 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	swap_args(char ***args, char **smaller, size_t i)
+static size_t	get_argslen(char **args)
+{
+	size_t max;
+	char **roam;
+
+	max = 0;
+	roam = args;
+	while (*roam)
+	{
+		if (ft_strlen(*roam) > max)
+			max = ft_strlen(*roam);
+		roam++;	
+	}
+	return (max);
+}
+
+static char	**copy_tab(char **args)
+{
+	char	**new;
+	char	**arg_ptr;
+	char	**new_ptr;
+	size_t	max;
+
+	if (!(new = malloc(sizeof(char**) * (ft_tablen(args) + 1))))
+		exit(EXIT_FAILURE);
+	new[ft_tablen(args)] = NULL;
+	new_ptr = new;
+	arg_ptr = args;
+	max = get_argslen(args);
+	while (*arg_ptr)
+	{
+		if (!(*new_ptr = malloc(sizeof(char) * (max + 1))))
+			exit(EXIT_FAILURE);
+		*new_ptr = ft_strcpy(*new_ptr, *arg_ptr);
+		arg_ptr++;
+		new_ptr++;
+	}
+	ft_freetab(args);
+	return (new);
+}
+
+static void	swap_args(char ***args, char **smaller, size_t i)
 {
 	char *swaptmp;
 	char **args_ptr;
@@ -20,14 +61,9 @@ static int	swap_args(char ***args, char **smaller, size_t i)
 	args_ptr = *args;
 	if (!(swaptmp = ft_strdup(args_ptr[i])))
 		exit(EXIT_FAILURE);
-	ft_sfree(args_ptr[i]);
-	if (!(args_ptr[i] = ft_strdup(*smaller)))
-		exit(EXIT_FAILURE);
-	ft_sfree(*smaller);
-	if (!(*smaller = ft_strdup(swaptmp)))
-		exit(EXIT_FAILURE);
+	args_ptr[i] = ft_strcpy(args_ptr[i], *smaller);
+	*smaller = ft_strcpy(*smaller, swaptmp);
 	ft_sfree(swaptmp);
-	return (1);
 }
 
 static int	alphasort_args(char ***args)
@@ -52,8 +88,7 @@ static int	alphasort_args(char ***args)
 			j++;
 		}
 		if (ft_strcmp(args_ptr[i], smaller))
-			if (!(swap_args(&args_ptr, &smaller, i)))
-				return (0);
+			swap_args(&args_ptr, &smaller, i);
 		i++;
 	}
 	return (1);
@@ -80,9 +115,8 @@ static int	timesort_args(char ***args)
 				smaller = args_ptr[j];
 			j++;
 		}
-		if (get_time(args_ptr[i]) == get_time(smaller))
-			if (!(swap_args(&args_ptr, &smaller, i)))
-				return (0);
+		if (get_time(args_ptr[i]) != get_time(smaller))
+			swap_args(&args_ptr, &smaller, i);
 		i++;
 	}
 	return (1);
@@ -114,25 +148,17 @@ static char	**revsort_args(char **args)
 	return (sort);
 }
 
-int			sort_args(char ***raw, t_argstabs *input)
+char		**sort_args(char **raw, t_argstabs *input)
 {
-	if (!(alphasort_args(&*raw)))
-	{
-		ft_freetab(input->args);
-		ft_sfree(input->opts);
-		return (0);
-	}
+	char	**tab;
+
+	if (!raw)
+		return (raw);
+	tab = copy_tab(raw);
+	alphasort_args(&tab);
 	if (input->opts && ft_strchr(input->opts, 't'))
-		if (!(timesort_args(&*raw)))
-			return (0);
+		timesort_args(&tab);
 	if (input->opts && ft_strchr(input->opts, 'r'))
-	{
-		if (!(*raw = revsort_args(*raw)))
-		{
-			ft_freetab(input->args);
-			ft_sfree(input->opts);
-			return (0);
-		}
-	}
-	return (1);
+		tab = revsort_args(tab);
+	return (tab);
 }
