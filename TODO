@@ -6,7 +6,7 @@
 #    By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/27 18:57:41 by qbackaer          #+#    #+#              #
-#    Updated: 2019/09/24 16:19:44 by qbackaer         ###   ########.fr        #
+#    Updated: 2019/09/25 18:39:10 by qbackaer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  -------------
@@ -20,6 +20,10 @@
 	1 	- ERROR CHECKING & MANAGEMENT in general
 
 	2 	- Norm, Organization, good variable, files and functions names
+
+	3	- Major/Minors instead of size on character files (/dev);
+
+	4	- when stat error, display only filename and not full path!
 
 	BUGS:
 		- leak on update_args allocated stuffs.

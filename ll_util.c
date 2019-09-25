@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/24 15:45:51 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/25 18:35:40 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,7 @@ static t_entry	*ll_create_node(char *path, char *fname, char *opts)
 
 	if (!(node = malloc(sizeof(t_entry))))
 		exit(EXIT_FAILURE);
-	if (opts && ft_strchr(opts, 'l'))
-	{
-		if (lstat(path, &st_buff))
-		{
-			perror(path);
-			return (NULL);
-		}
-	}
-	else if (stat(path, &st_buff))
+	if (lstat(path, &st_buff))
 	{
 		perror(path);
 		return (NULL);
