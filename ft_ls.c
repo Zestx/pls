@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 19:30:19 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/26 20:46:29 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	list(char *path, t_argstabs input, t_flag flag, size_t nb_arg)
 		return (0);
 	}
 	entries = NULL;
-	dirtab = ll_generate(&entries, dir, path, input.opts);
+	dirtab = sort_args(ll_generate(&entries, dir, path, input.opts), &input);
+	ft_printab(dirtab);
 	sorted = sort_ll(entries, ll_size(entries), path, input.opts);
 	if (flag.nl)
 		ft_putchar('\n');
