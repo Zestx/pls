@@ -6,21 +6,20 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 17:15:58 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 19:30:19 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	list(char *path, t_argstabs input, int f_flag, size_t nb_arg)
+static int	list(char *path, t_argstabs input, t_flag flag, size_t nb_arg)
 {
 	DIR				*dir;
 	t_entry			*entries;
 	t_entry			*sorted;
 	char			**dirtab;
 	char			**roam;
-
-	sorted = NULL;
+	
 	if (!(dir = opendir(path)))
 	{
 		perror(path);
@@ -29,20 +28,23 @@ static int	list(char *path, t_argstabs input, int f_flag, size_t nb_arg)
 	entries = NULL;
 	dirtab = ll_generate(&entries, dir, path, input.opts);
 	sorted = sort_ll(entries, ll_size(entries), path, input.opts);
-	if (f_flag)
+	if (flag.nl)
 		ft_putchar('\n');
-	if (nb_arg > 1 || (input.opts && ft_strchr(input.opts, 'R')))
+	if (nb_arg > 1 || ((input.opts && ft_strchr(input.opts, 'R')) && dirtab) || flag.rc == 1)
 	{
 		ft_putstr(path);
 		ft_putendl(":");
 	}
-	f_flag = 1;
+	flag.nl = 1;
 	ll_print(sorted, input.opts);
 	ll_free(sorted);
 	roam = dirtab;
 	if (input.opts && ft_strchr(input.opts, 'R') && dirtab)
+	{
+		flag.rc = 1;
 		while (*roam)
-			list(*roam++, input, f_flag, nb_arg);
+			list(*roam++, input, flag, nb_arg);
+	}
 	ft_freetab(dirtab);
 	closedir(dir);
 	return (1);
@@ -80,15 +82,21 @@ static void	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 	ft_freetab(input.args);
 }
 
-static int	ls_dispatch(t_argstabs input)
+static void		flag_init(t_flag *flag)
+{
+	flag->nl = 0;
+	flag->rc = 0;
+}
+
+static int		ls_dispatch(t_argstabs input)
 {
 	char		**dir_list;
 	char		**reg_list;
 	char		**roam;
-	int			f_flag;
+	t_flag		flag;
 	size_t		nb_arg;
 
-	f_flag = 0;
+	flag_init(&flag);
 	dir_list = NULL;
 	reg_list = NULL;
 	nb_arg = tablen(input.args);
@@ -97,13 +105,13 @@ static int	ls_dispatch(t_argstabs input)
 		input.args = update_args(input.args, ".");
 	split_args(input, &dir_list, &reg_list);
 	if (print_args(reg_list, input.opts))
-		f_flag = 1;
+		flag.nl = 1;
 	roam = dir_list;
 	if (dir_list)
 		while (*roam)
 		{
-			list(*roam++, input, f_flag, nb_arg);
-			f_flag = 1;
+			list(*roam++, input, flag, nb_arg);
+			flag.nl = 1;
 		}
 	ft_freetab(dir_list);
 	ft_freetab(reg_list);

@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 16:28:42 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/26 19:05:54 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ typedef struct		s_maxlen
 	size_t			size_maxlen;
 }					t_maxlen;
 
+typedef struct		s_flag
+{
+	int				nl;
+	int				rc;
+
+}					t_flag;
 /*
 **	print_args.c
 */

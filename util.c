@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 19:15:40 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 18:22:17 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 18:29:37 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ char	*subdir_path(const char *current_path, const char *subdir)
 	i = 0;
 	while (current_path[i] != '\0')
 	{
-		if (current_path[i] != '\' && curr)
 			full_path[i] = current_path[i];
 			i++;
 	}
-	full_path[i] = '/';
-	i++;
+	if (!(full_path[i-1] == '/'))
+	{
+		full_path[i] = '/';
+		i++;
+	}
 	j = 0;
 	while (subdir[j] != '\0')
 	{

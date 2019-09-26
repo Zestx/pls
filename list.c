@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 13:58:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 17:32:47 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 18:30:05 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char			**ll_generate(t_entry **head, DIR *dir, char *path, char *opts)
 	new_path = NULL;
 	while ((entry = readdir(dir)))
 	{
-		printf("current path: [%s]\n", path);
-		printf("subdir  path: [%s]\n", entry->d_name);
 		new_path = subdir_path(path, entry->d_name);
 		if (entry->d_name[0] != '.' || (opts && ft_strchr(opts, 'a')))
 		{
