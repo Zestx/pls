@@ -6,13 +6,13 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 16:51:30 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/26 17:15:58 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	list(char *path, t_argstabs input, int f_flag)
+static int	list(char *path, t_argstabs input, int f_flag, size_t nb_arg)
 {
 	DIR				*dir;
 	t_entry			*entries;
@@ -31,13 +31,18 @@ static int	list(char *path, t_argstabs input, int f_flag)
 	sorted = sort_ll(entries, ll_size(entries), path, input.opts);
 	if (f_flag)
 		ft_putchar('\n');
+	if (nb_arg > 1 || (input.opts && ft_strchr(input.opts, 'R')))
+	{
+		ft_putstr(path);
+		ft_putendl(":");
+	}
 	f_flag = 1;
 	ll_print(sorted, input.opts);
 	ll_free(sorted);
 	roam = dirtab;
 	if (input.opts && ft_strchr(input.opts, 'R') && dirtab)
 		while (*roam)
-			list(*roam++, input, f_flag);
+			list(*roam++, input, f_flag, nb_arg);
 	ft_freetab(dirtab);
 	closedir(dir);
 	return (1);
@@ -81,10 +86,12 @@ static int	ls_dispatch(t_argstabs input)
 	char		**reg_list;
 	char		**roam;
 	int			f_flag;
+	size_t		nb_arg;
 
 	f_flag = 0;
 	dir_list = NULL;
 	reg_list = NULL;
+	nb_arg = tablen(input.args);
 	input.args = sort_args(input.args, &input);
 	if (!input.args)
 		input.args = update_args(input.args, ".");
@@ -95,7 +102,7 @@ static int	ls_dispatch(t_argstabs input)
 	if (dir_list)
 		while (*roam)
 		{
-			list(*roam++, input, f_flag);
+			list(*roam++, input, f_flag, nb_arg);
 			f_flag = 1;
 		}
 	ft_freetab(dir_list);
