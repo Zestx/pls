@@ -6,20 +6,20 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 20:46:29 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 21:41:26 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	list(char *path, t_argstabs input, t_flag flag, size_t nb_arg)
+static int		list(char *path, t_argstabs input, t_flag flag, size_t nb_arg)
 {
 	DIR				*dir;
 	t_entry			*entries;
 	t_entry			*sorted;
 	char			**dirtab;
 	char			**roam;
-	
+
 	if (!(dir = opendir(path)))
 	{
 		perror(path);
@@ -51,7 +51,7 @@ static int	list(char *path, t_argstabs input, t_flag flag, size_t nb_arg)
 	return (1);
 }
 
-static void	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
+static void		split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 {
 	char		**roam;
 	struct stat	st_buff;
@@ -62,18 +62,10 @@ static void	split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 		if (input.opts && ft_strchr(input.opts, 'l'))
 		{
 			if (lstat(*roam, &st_buff))
-			{
-				perror(*roam);
-				roam++;
-				continue ;
-			}
+				perror(*roam++);
 		}
 		else if (stat(*roam, &st_buff))
-		{
-			perror(*roam);
-			roam++;
-			continue;
-		}
+			perror(*roam++);
 		if (S_ISDIR(st_buff.st_mode))
 			*dir_list = update_args(*dir_list, *roam);
 		else
@@ -105,8 +97,7 @@ static int		ls_dispatch(t_argstabs input)
 	if (!input.args)
 		input.args = update_args(input.args, ".");
 	split_args(input, &dir_list, &reg_list);
-	if (print_args(reg_list, input.opts))
-		flag.nl = 1;
+	print_args(reg_list, input.opts, &flag);
 	roam = dir_list;
 	if (dir_list)
 		while (*roam)
@@ -119,7 +110,7 @@ static int		ls_dispatch(t_argstabs input)
 	return (1);
 }
 
-int			main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_argstabs input;
 

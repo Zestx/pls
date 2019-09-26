@@ -6,13 +6,13 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:58:46 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 13:56:19 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/26 21:06:32 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		print_args(char **reglist, char *opts)
+int		print_args(char **reglist, char *opts, t_flag *flag)
 {
 	char		**roam;
 	struct stat	st_buff;
@@ -31,5 +31,6 @@ int		print_args(char **reglist, char *opts)
 			display_entry(*roam, &st_buff, 0, pad);
 		roam++;
 	}
+	flag->nl = 1;
 	return (1);
 }
