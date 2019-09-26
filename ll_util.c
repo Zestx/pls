@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/25 18:35:40 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 14:28:41 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static t_entry	*ll_create_node(char *path, char *fname, char *opts)
 	return (node);
 }
 
-t_entry			*ll_append_node(t_entry *head, char *path, char *fname, char *opts)
+t_entry			*ll_append_node(t_entry *head, char *path,
+								char *fname, char *opts)
 {
 	t_entry *roam;
 	t_entry *node;
@@ -52,7 +53,8 @@ t_entry			*ll_append_node(t_entry *head, char *path, char *fname, char *opts)
 	return (head);
 }
 
-t_entry			*ll_push_node(t_entry *head, char *path, char *fname, char *opts)
+t_entry			*ll_push_node(t_entry *head, char *path,
+								char *fname, char *opts)
 {
 	t_entry *node;
 

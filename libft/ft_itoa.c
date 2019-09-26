@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 15:11:43 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/19 18:57:49 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 14:25:52 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ char		*ft_itoa(long n)
 	int		len;
 	int		neg;
 
-//	if (n == -2147483648)
-//		return (ft_strdup("-2147483648"));
 	if ((neg = isnegative(n)) == 1)
 		n *= -1;
 	len = count_digits(n) + 1 + neg;

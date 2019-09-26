@@ -6,19 +6,11 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/24 17:35:09 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:53:36 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void	display_wpr(t_entry *ent, char *opts, t_maxlen pad)
-{
-	if (opts && ft_strchr(opts, 'l'))
-		display_entry_l(ent, &(ent->filestat), 1, pad);
-	else
-		display_entry_l(ent, &(ent->filestat), 0, pad);
-}
 
 void	display_entry(char *fname, struct stat *fstats, int l, t_maxlen pad)
 {
@@ -34,7 +26,8 @@ void	display_entry(char *fname, struct stat *fstats, int l, t_maxlen pad)
 	ft_putstr(" ");
 	format_name(fstats, pad);
 	ft_putstr("  ");
-	format_size(fstats->st_size, pad);
+	if (!(print_minormajor(fstats, pad)))
+		format_size(fstats->st_size, pad);
 	ft_putstr(" ");
 	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
 	print_fname(fname, fname, fstats);

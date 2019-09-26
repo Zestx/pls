@@ -6,11 +6,19 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 17:00:35 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/23 19:22:38 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 14:59:11 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void	display_wpr(t_entry *ent, char *opts, t_maxlen pad)
+{
+	if (opts && ft_strchr(opts, 'l'))
+		display_entry_l(ent, &(ent->filestat), 1, pad);
+	else
+		display_entry_l(ent, &(ent->filestat), 0, pad);
+}
 
 void	display_entry_l(t_entry *ent, struct stat *fstats, int l, t_maxlen pad)
 {
@@ -26,7 +34,8 @@ void	display_entry_l(t_entry *ent, struct stat *fstats, int l, t_maxlen pad)
 	ft_putstr(" ");
 	format_name(fstats, pad);
 	ft_putstr("  ");
-	format_size(fstats->st_size, pad);
+	if (!(print_minormajor(fstats, pad)))
+		format_size(fstats->st_size, pad);
 	ft_putstr(" ");
 	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
 	print_fname(ent->filename, ent->path, fstats);
@@ -51,4 +60,31 @@ void	print_fname(char *fname, char *path, struct stat *fstats)
 	}
 	else
 		ft_putstr(fname);
+}
+
+int		print_minormajor(struct stat *fstats, t_maxlen ml)
+{
+	size_t	major;
+	size_t	minor;
+	size_t	minmajpad;
+
+	if (S_ISCHR(fstats->st_mode) || S_ISBLK(fstats->st_mode))
+	{
+		major = ft_count_digits(fstats->st_rdev >> 24);
+		minor = ft_count_digits(fstats->st_rdev & 16777215);
+		minmajpad = 8;
+		if (ml.size_maxlen > 8)
+			while (ml.size_maxlen - minmajpad-- > 8)
+				ft_putchar(' ');
+		while (3 - major++ > 0)
+			ft_putchar(' ');
+		ft_putstr(ft_itoa(fstats->st_rdev >> 24));
+		ft_putchar(',');
+		while (4 - minor++ > 0)
+			ft_putchar(' ');
+		ft_putstr(ft_itoa(fstats->st_rdev & 16777215));
+		return (1);
+	}
+	else
+		return (0);
 }

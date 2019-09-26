@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/25 17:23:22 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 16:51:30 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	list(char *path, t_argstabs input, int f_flag)
 	if (f_flag)
 		ft_putchar('\n');
 	f_flag = 1;
-	printf("%s: \n", path);
 	ll_print(sorted, input.opts);
 	ll_free(sorted);
 	roam = dirtab;

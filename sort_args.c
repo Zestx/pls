@@ -6,27 +6,11 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/25 17:48:20 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/26 16:05:20 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-static size_t	get_argslen(char **args)
-{
-	size_t max;
-	char **roam;
-
-	max = 0;
-	roam = args;
-	while (*roam)
-	{
-		if (ft_strlen(*roam) > max)
-			max = ft_strlen(*roam);
-		roam++;	
-	}
-	return (max);
-}
 
 static char	**copy_tab(char **args)
 {
@@ -51,19 +35,6 @@ static char	**copy_tab(char **args)
 	}
 	ft_freetab(args);
 	return (new);
-}
-
-static void	swap_args(char ***args, char **smaller, size_t i)
-{
-	char *swaptmp;
-	char **args_ptr;
-
-	args_ptr = *args;
-	if (!(swaptmp = ft_strdup(args_ptr[i])))
-		exit(EXIT_FAILURE);
-	args_ptr[i] = ft_strcpy(args_ptr[i], *smaller);
-	*smaller = ft_strcpy(*smaller, swaptmp);
-	ft_sfree(swaptmp);
 }
 
 static int	alphasort_args(char ***args)
