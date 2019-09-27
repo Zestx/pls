@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 19:15:40 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 15:19:39 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 16:50:45 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ int		check_opt(char *opt_list, char **arg_list)
 	roam = opt_list;
 	while (*roam != '\0')
 	{
-		if (!ft_strchr("alrtRi", *roam))
+		if (!ft_strchr("Radilrt", *roam))
 		{
 			ft_putstr("ft_ls: illegal option -- ");
 			ft_putchar(*roam);
 			ft_putchar('\n');
-			ft_putendl("usage: ./ft_ls [-Ralrsti] [file ...]");
+			ft_putendl("usage: ./ft_ls [-Radilrt] [file ...]");
 			arg_free(arg_list, opt_list);
 			return (0);
 		}

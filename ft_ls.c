@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 15:15:56 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 16:49:26 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ static void		split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 		}
 		else if (stat(*roam, &st_buff))
 			perror(*roam++);
-		if (S_ISDIR(st_buff.st_mode))
+		if (S_ISDIR(st_buff.st_mode) && 
+				(!input.opts || (input.opts && !ft_strchr(input.opts, 'd'))))
 			*dir_list = update_args(*dir_list, *roam);
 		else
 			*reg_list = update_args(*reg_list, *roam);
