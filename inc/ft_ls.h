@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 19:12:06 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/27 19:44:01 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct		s_argstabs
 {
@@ -179,6 +179,8 @@ void				recursive_wpr(char **dirtab, t_argstabs input, t_flag flag,
 					size_t nb_arg);
 void				split_helper(struct stat st_buff, char *opts,
 					t_split *split, char **roam);
+int					utils(char **tmp, int swap);
+
 /*
 **	getstat.c
 */

@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 17:00:35 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/27 16:37:28 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 19:23:12 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		print_minormajor(struct stat *fstats, t_maxlen ml)
 	size_t	major;
 	size_t	minor;
 	size_t	minmajpad;
+	char	*tmp;
 
 	if (S_ISCHR(fstats->st_mode) || S_ISBLK(fstats->st_mode))
 	{
@@ -79,11 +80,12 @@ int		print_minormajor(struct stat *fstats, t_maxlen ml)
 				ft_putchar(' ');
 		while (3 - major++ > 0)
 			ft_putchar(' ');
-		ft_putstr(ft_itoa(fstats->st_rdev >> 24));
-		ft_putchar(',');
+		tmp = ft_itoa(fstats->st_rdev >> 24);
+		utils(&tmp, 0) && utils(&tmp, 1) && utils(&tmp, 2);
 		while (4 - minor++ > 0)
 			ft_putchar(' ');
-		ft_putstr(ft_itoa(fstats->st_rdev & 16777215));
+		tmp = ft_itoa(fstats->st_rdev & 16777215);
+		utils(&tmp, 0) && utils(&tmp, 2);
 		return (1);
 	}
 	else

@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: srobin <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/09/27 19:37:57 by srobin            #+#    #+#              #
+#    Updated: 2019/09/27 19:44:07 by srobin           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
-CFLAGS = -Wall -Wextra --pedantic 
+CFLAGS = -Wall -Wextra -Werror
 NAME = ft_ls
 INCLUDES = ./includes/ft_ls.h
 SRCS = ft_ls.c parse.c util.c sort_args.c ll_util.c list.c display.c getstat.c sort_ll.c util2.c print_args.c ll_util2.c \
@@ -11,10 +23,10 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C ./libft 
-	$(CC) $(CFLAGS) $^ -I. ./libft/libft.a -o ft_ls
+	$(CC) $(CFLAGS) $^ -I inc/ ./libft/libft.a -o ft_ls
 
-$(OBJS): $(SRCS)
-	$(CC) $(CFLAGS) -I. -c $^
+$(OBJS): $(addprefix src/,$(SRCS))
+	$(CC) $(CFLAGS) -I inc/ -c $^
 
 clean:
 	rm -rf *.o
