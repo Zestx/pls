@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 17:15:57 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 18:40:48 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/27 19:00:30 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ void	recursive_wpr(char **dt, t_argstabs input, t_flag flag, size_t nb_arg)
 		while (*roam)
 			list(*roam++, input, flag, nb_arg);
 	}
+}
+
+void	split_helper(struct stat st_buff, char *opts,
+		t_split *split, char **roam)
+{
+	if (S_ISDIR(st_buff.st_mode) &&
+			(!opts || (opts && !ft_strchr(opts, 'd'))))
+		split->dir = update_args(split->dir, *roam);
+	else
+		split->reg = update_args(split->reg, *roam);
 }

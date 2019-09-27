@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:44:08 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 18:40:37 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/27 18:58:14 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				list(char *path, t_argstabs input, t_flag flag, size_t nb_arg)
 	return (1);
 }
 
-static void		split_args(t_argstabs input, char ***dir_list, char ***reg_list)
+static void		split_args(t_argstabs input, t_split *split)
 {
 	char		**roam;
 	struct stat	st_buff;
@@ -59,11 +59,7 @@ static void		split_args(t_argstabs input, char ***dir_list, char ***reg_list)
 			perror(*roam++);
 			continue ;
 		}
-		if (S_ISDIR(st_buff.st_mode) &&
-				(!input.opts || (input.opts && !ft_strchr(input.opts, 'd'))))
-			*dir_list = update_args(*dir_list, *roam);
-		else
-			*reg_list = update_args(*reg_list, *roam);
+		split_helper(st_buff, input.opts, split, roam);
 		roam++;
 	}
 	ft_freetab(input.args);
@@ -78,30 +74,29 @@ static void		flag_init(t_flag *flag)
 
 static int		ls_dispatch(t_argstabs input)
 {
-	char		**dir_list;
-	char		**reg_list;
+	t_split		split;
 	char		**roam;
 	t_flag		flag;
 	size_t		nb_arg;
 
 	flag_init(&flag);
-	dir_list = NULL;
-	reg_list = NULL;
+	split.dir = NULL;
+	split.reg = NULL;
 	nb_arg = tablen(input.args);
 	input.args = sort_args(input.args, &input);
 	if (!input.args)
 		input.args = update_args(input.args, ".");
-	split_args(input, &dir_list, &reg_list);
-	print_args(reg_list, input.opts, &flag);
-	roam = dir_list;
-	if (dir_list)
+	split_args(input, &split);
+	print_args(split.reg, input.opts, &flag);
+	roam = split.dir;
+	if (split.dir)
 		while (*roam)
 		{
 			list(*roam++, input, flag, nb_arg);
 			flag.nl = 1;
 		}
-	ft_freetab(dir_list);
-	ft_freetab(reg_list);
+	ft_freetab(split.dir);
+	ft_freetab(split.reg);
 	return (1);
 }
 

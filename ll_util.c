@@ -6,13 +6,13 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/22 11:16:11 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 16:42:49 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 19:03:19 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static t_entry	*ll_create_node(char *path, char *fname, char *opts)
+static t_entry	*ll_create_node(char *path, char *fname)
 {
 	t_entry		*node;
 	struct stat	st_buff;
@@ -33,13 +33,12 @@ static t_entry	*ll_create_node(char *path, char *fname, char *opts)
 	return (node);
 }
 
-t_entry			*ll_append_node(t_entry *head, char *path,
-								char *fname, char *opts)
+t_entry			*ll_append_node(t_entry *head, char *path, char *fname)
 {
 	t_entry *roam;
 	t_entry *node;
 
-	if (!(node = ll_create_node(path, fname, opts)))
+	if (!(node = ll_create_node(path, fname)))
 		return (head);
 	if (!head)
 	{
@@ -53,12 +52,11 @@ t_entry			*ll_append_node(t_entry *head, char *path,
 	return (head);
 }
 
-t_entry			*ll_push_node(t_entry *head, char *path,
-								char *fname, char *opts)
+t_entry			*ll_push_node(t_entry *head, char *path, char *fname)
 {
 	t_entry *node;
 
-	if (!(node = ll_create_node(path, fname, opts)))
+	if (!(node = ll_create_node(path, fname)))
 		return (head);
 	if (!head)
 	{

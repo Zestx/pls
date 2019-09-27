@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 14:53:18 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 19:10:46 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_entry	*ll_sort(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 		init_cursors(&c, lst);
 		find_weakest_alpha(&c, opts);
 		path = subdir_path(cwd, c.wkst_c->filename);
-		sorted_lst = ll_append_node(sorted_lst, path, c.wkst_c->filename, opts);
+		sorted_lst = ll_append_node(sorted_lst, path, c.wkst_c->filename);
 		if (c.wkst_c == c.wkst_p)
 			lst = c.wkst_c->next;
 		else
@@ -57,13 +57,13 @@ static t_entry	*ll_sort(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 		count++;
 	}
 	path = subdir_path(cwd, lst->filename);
-	sorted_lst = ll_append_node(sorted_lst, path, lst->filename, opts);
+	sorted_lst = ll_append_node(sorted_lst, path, lst->filename);
 	ll_free(lst);
 	free(path);
 	return (sorted_lst);
 }
 
-static t_entry	*ll_revrssort(t_entry *lst, char *cwd, char *opts)
+static t_entry	*ll_revrssort(t_entry *lst, char *cwd)
 {
 	t_entry		*sorted_lst;
 	t_cursors	llc;
@@ -74,7 +74,7 @@ static t_entry	*ll_revrssort(t_entry *lst, char *cwd, char *opts)
 	while (llc.curs_c)
 	{
 		path = subdir_path(cwd, llc.curs_c->filename);
-		sorted_lst = ll_push_node(sorted_lst, path, llc.curs_c->filename, opts);
+		sorted_lst = ll_push_node(sorted_lst, path, llc.curs_c->filename);
 		llc.curs_c = llc.curs_c->next;
 	}
 	return (sorted_lst);
@@ -91,6 +91,6 @@ t_entry			*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 	if (opts && ft_strchr(opts, 't'))
 		sorted_lst = ll_sort(sorted_lst, ll_size, cwd, opts);
 	if (opts && ft_strchr(opts, 'r'))
-		sorted_lst = ll_revrssort(sorted_lst, cwd, opts);
+		sorted_lst = ll_revrssort(sorted_lst, cwd);
 	return (sorted_lst);
 }

@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 18:40:35 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/27 19:12:06 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,17 @@ typedef struct		s_flag
 	int				dt;
 }					t_flag;
 
+typedef struct		s_split
+{
+	char			**dir;
+	char			**reg;
+}					t_split;
+
 /*
 **	ft_ls.c
 */
-int		list(char *path, t_argstabs input, t_flag flag, size_t nb_arg);
+int					list(char *path, t_argstabs input, t_flag flag,
+					size_t nb_arg);
 
 /*
 **	print_args.c
@@ -118,10 +125,8 @@ size_t				tablen(char **tab);
 /*
 **	ll_util.c
 */
-t_entry				*ll_append_node(t_entry *ll_head, char *path,
-					char *fname, char *opts);
-t_entry				*ll_push_node(t_entry *ll_head, char *path,
-					char *fname, char *opts);
+t_entry				*ll_append_node(t_entry *ll_head, char *path, char *fname);
+t_entry				*ll_push_node(t_entry *ll_head, char *path, char *fname);
 void				ll_free(t_entry *ll_head);
 void				ll_print(t_entry *head, char *opts);
 
@@ -170,9 +175,10 @@ void				print_inode(long size, t_maxlen pad, char *opts);
 */
 void				list_helper(char *path, t_argstabs input, t_flag flag,
 					size_t nb_arg);
-void				recursive_wpr(char **dirtab, t_argstabs input, t_flag flag, 
+void				recursive_wpr(char **dirtab, t_argstabs input, t_flag flag,
 					size_t nb_arg);
-
+void				split_helper(struct stat st_buff, char *opts,
+					t_split *split, char **roam);
 /*
 **	getstat.c
 */
