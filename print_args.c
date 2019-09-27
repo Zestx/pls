@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 19:58:46 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 21:06:32 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 15:04:09 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		print_args(char **reglist, char *opts, t_flag *flag)
 	while (*roam)
 	{
 		lstat(*roam, &st_buff);
+		print_inode(st_buff.st_ino, pad, opts);
 		if (opts && ft_strchr(opts, 'l'))
 			display_entry(*roam, &st_buff, 1, pad);
 		else

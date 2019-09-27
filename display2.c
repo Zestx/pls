@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 17:00:35 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/26 14:59:11 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 16:37:28 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	display_wpr(t_entry *ent, char *opts, t_maxlen pad)
 {
+	print_inode(ent->filestat.st_ino, pad, opts);
 	if (opts && ft_strchr(opts, 'l'))
 		display_entry_l(ent, &(ent->filestat), 1, pad);
 	else
@@ -35,7 +36,7 @@ void	display_entry_l(t_entry *ent, struct stat *fstats, int l, t_maxlen pad)
 	format_name(fstats, pad);
 	ft_putstr("  ");
 	if (!(print_minormajor(fstats, pad)))
-		format_size(fstats->st_size, pad);
+		format_size(fstats->st_size, pad.size_maxlen);
 	ft_putstr(" ");
 	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
 	print_fname(ent->filename, ent->path, fstats);
@@ -87,4 +88,15 @@ int		print_minormajor(struct stat *fstats, t_maxlen ml)
 	}
 	else
 		return (0);
+}
+
+void	print_inode(long size, t_maxlen pad, char *opts)
+{
+	if (opts && ft_strchr(opts, 'i'))
+	{
+		format_size(size, pad.ino_maxlen);
+		ft_putchar(' ');
+	}
+	else
+		return ;
 }

@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 14:50:09 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/26 14:50:46 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 16:38:24 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,24 @@ static size_t		get_link_length(t_entry *entry)
 t_maxlen			get_maxlen(t_entry *roam)
 {
 	t_maxlen	ml;
-	size_t		lnk_length;
-	size_t		uid_length;
-	size_t		grp_length;
-	size_t		size_length;
+	t_maxlen	cl;
 
-	initiate_length(&lnk_length, &uid_length, &grp_length, &size_length);
-	initiate_length(&ml.lnk_maxlen, &ml.uid_maxlen,
-					&ml.grp_maxlen, &ml.size_maxlen);
+	init_size(&ml);
+	init_size(&cl);
 	if (!roam)
 		return (ml);
 	while (roam)
 	{
-		lnk_length = get_link_length(roam);
-		uid_length = ft_strlen(get_usrname(roam->filestat.st_uid));
-		grp_length = ft_strlen(get_grpname(roam->filestat.st_gid));
-		size_length = get_size_length(roam);
-		compare_max(&ml.lnk_maxlen, lnk_length);
-		compare_max(&ml.uid_maxlen, uid_length);
-		compare_max(&ml.grp_maxlen, grp_length);
-		compare_max(&ml.size_maxlen, size_length);
+		cl.lnk_maxlen = get_link_length(roam);
+		cl.uid_maxlen = ft_strlen(get_usrname(roam->filestat.st_uid));
+		cl.grp_maxlen = ft_strlen(get_grpname(roam->filestat.st_gid));
+		cl.size_maxlen = get_size_length(roam);
+		cl.ino_maxlen = ft_count_digits(roam->filestat.st_ino);
+		compare_max(&ml.lnk_maxlen, cl.lnk_maxlen);
+		compare_max(&ml.uid_maxlen, cl.uid_maxlen);
+		compare_max(&ml.grp_maxlen, cl.grp_maxlen);
+		compare_max(&ml.size_maxlen, cl.size_maxlen);
+		compare_max(&ml.ino_maxlen, cl.ino_maxlen);
 		roam = roam->next;
 	}
 	return (ml);

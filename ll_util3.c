@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 14:29:59 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/26 14:44:14 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 15:30:55 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@ t_maxlen	get_len(struct stat filestat)
 	else
 		ml.size_maxlen = ft_count_digits(filestat.st_size);
 	return (ml);
-}
-
-void		initiate_length(size_t *lnk, size_t *uid, size_t *grp, size_t *size)
-{
-	*lnk = 0;
-	*uid = 0;
-	*grp = 0;
-	*size = 0;
 }
 
 void		compare_max(size_t *max, size_t check)

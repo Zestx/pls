@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:43:27 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 15:53:36 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 15:26:00 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	display_entry(char *fname, struct stat *fstats, int l, t_maxlen pad)
 	format_name(fstats, pad);
 	ft_putstr("  ");
 	if (!(print_minormajor(fstats, pad)))
-		format_size(fstats->st_size, pad);
+		format_size(fstats->st_size, pad.size_maxlen);
 	ft_putstr(" ");
 	format_time(ctime(&(fstats->st_mtime)), is_tooold(fstats->st_mtime));
 	print_fname(fname, fname, fstats);
@@ -76,13 +76,13 @@ void	format_time(char *r_time, int too_old)
 	free(f_time);
 }
 
-void	format_size(long size, t_maxlen pad)
+void	format_size(long size, size_t maxlen)
 {
 	char	*raw_size;
 	size_t	curr_size;
 
 	curr_size = ft_count_digits(size);
-	while (curr_size < pad.size_maxlen)
+	while (curr_size < maxlen)
 	{
 		ft_putchar(' ');
 		curr_size++;

@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 21:33:31 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 15:32:07 by srobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct		s_maxlen
 	size_t			uid_maxlen;
 	size_t			grp_maxlen;
 	size_t			size_maxlen;
+	size_t			ino_maxlen;
 }					t_maxlen;
 
 typedef struct		s_flag
@@ -130,8 +131,6 @@ t_maxlen			get_maxlen(t_entry *entry);
 */
 size_t				ll_size(t_entry *head);
 t_maxlen			get_len(struct stat filestat);
-void				initiate_length(size_t *lnk, size_t *uid,
-					size_t *grp, size_t *size);
 void				compare_max(size_t *max, size_t check);
 
 /*
@@ -146,7 +145,7 @@ char				**ll_generate(t_entry **head, DIR *dir,
 void				display_entry(char *fname, struct stat *fstats,
 					int l, t_maxlen data);
 void				format_time(char *r_time, int too_old);
-void				format_size(long size, t_maxlen data);
+void				format_size(long size, size_t maxlen);
 void				format_link(int link, t_maxlen pad);
 void				format_name(struct stat *fstat, t_maxlen pad);
 
@@ -158,6 +157,7 @@ void				display_entry_l(t_entry *ent, struct stat *fstats,
 					int l, t_maxlen pad);
 void				print_fname(char *fname, char *path, struct stat *fstats);
 int					print_minormajor(struct stat *fstats, t_maxlen ml);
+void				print_inode(long size, t_maxlen pad, char *opts);
 
 /*
 **	getstat.c
@@ -178,5 +178,6 @@ char				*format_old(char *r_time);
 **	args_max.c
 */
 t_maxlen			get_maxlen_args(char **args);
+void				init_size(t_maxlen *ml);
 
 #endif
