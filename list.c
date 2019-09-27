@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 13:58:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/26 18:30:05 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 17:28:31 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		isdir(t_entry *head)
 		return (0);
 }
 
-char			**ll_generate(t_entry **head, DIR *dir, char *path, char *opts)
+char			**ll_gen(t_entry **head, DIR *dir, char *path, char *opts)
 {
 	struct dirent	*entry;
 	char			*new_path;

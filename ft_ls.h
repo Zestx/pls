@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 15:32:07 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/27 18:40:35 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,14 @@ typedef struct		s_flag
 {
 	int				nl;
 	int				rc;
-
+	int				dt;
 }					t_flag;
+
+/*
+**	ft_ls.c
+*/
+int		list(char *path, t_argstabs input, t_flag flag, size_t nb_arg);
+
 /*
 **	print_args.c
 */
@@ -136,7 +142,7 @@ void				compare_max(size_t *max, size_t check);
 /*
 **	list.c
 */
-char				**ll_generate(t_entry **head, DIR *dir,
+char				**ll_gen(t_entry **head, DIR *dir,
 					char *path, char *opts);
 
 /*
@@ -158,6 +164,14 @@ void				display_entry_l(t_entry *ent, struct stat *fstats,
 void				print_fname(char *fname, char *path, struct stat *fstats);
 int					print_minormajor(struct stat *fstats, t_maxlen ml);
 void				print_inode(long size, t_maxlen pad, char *opts);
+
+/*
+**	display3.c
+*/
+void				list_helper(char *path, t_argstabs input, t_flag flag,
+					size_t nb_arg);
+void				recursive_wpr(char **dirtab, t_argstabs input, t_flag flag, 
+					size_t nb_arg);
 
 /*
 **	getstat.c
