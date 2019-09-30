@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 19:29:01 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 19:10:46 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:12:00 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		find_weakest_alpha(t_cursors *llc, char *opts)
 	{
 		if (opts && ft_strchr(opts, 't'))
 		{
-			if (get_time(llc->wkst_c->path) < get_time(llc->curs_c->path))
+			if (get_time_ll(llc->wkst_c->filestat) < get_time_ll(llc->curs_c->filestat))
 			{
 				llc->wkst_c = llc->curs_c;
 				llc->wkst_p = llc->curs_p;
@@ -87,7 +87,7 @@ t_entry			*sort_ll(t_entry *lst, size_t ll_size, char *cwd, char *opts)
 	if (!lst)
 		return (NULL);
 	sorted_lst = NULL;
-	sorted_lst = ll_sort(lst, ll_size, cwd, opts);
+	sorted_lst = ll_sort(lst, ll_size, cwd, "");
 	if (opts && ft_strchr(opts, 't'))
 		sorted_lst = ll_sort(sorted_lst, ll_size, cwd, opts);
 	if (opts && ft_strchr(opts, 'r'))

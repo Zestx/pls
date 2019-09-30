@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:24:38 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/23 19:35:04 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:07:49 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,23 @@ char	*format_yun(char *r_time)
 	}
 	f_str[i] = '\0';
 	return (f_str);
+}
+
+long	get_time(char *path)
+{
+	struct stat	attr;
+	time_t		m_time;
+
+	if (lstat(path, &attr))
+		return (0);
+	m_time = attr.st_mtime;
+	return (m_time);
+}
+
+long	get_time_ll(struct stat fstat)
+{
+	time_t		m_time;
+
+	m_time = fstat.st_mtime;
+	return (m_time);
 }

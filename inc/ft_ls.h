@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/27 19:44:01 by srobin           ###   ########.fr       */
+/*   Updated: 2019/09/30 18:05:27 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int					check_update(char ***tab1, char **tab2,
 					char *roam, t_argstabs *input);
 void				arg_free(char **arg_list, char *opt_list);
 char				*subdir_path(const char *current_path, const char *subdir);
-long				get_time(char *path);
 
 /*
 **	 util2.c
@@ -195,6 +194,8 @@ void				get_perm(char *buffer, mode_t file_mode);
 */
 char				*format_yun(char *r_time);
 char				*format_old(char *r_time);
+long				get_time(char *path);
+long				get_time_ll(struct stat fstat);
 
 /*
 **	args_max.c
