@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 22:30:15 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/10/01 16:16:11 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/10/01 16:47:43 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ static char	**copy_tab(char **args)
 	max = get_argslen(args);
 	while (*arg_ptr)
 	{
-		//if (!(*new_ptr = malloc(sizeof(char) * (max + 1))))
-		//	exit(EXIT_FAILURE);
-		*new_ptr = ft_strnew(4096);
+		if (!(*new_ptr = malloc(sizeof(char) * (max + 1))))
+			exit(EXIT_FAILURE);
 		*new_ptr = ft_strcpy(*new_ptr, *arg_ptr);
 		arg_ptr++;
 		new_ptr++;
@@ -131,7 +130,7 @@ char		**sort_args(char **raw, t_argstabs *input)
 	if (input->opts && ft_strchr(input->opts, 't'))
 	{
 		timesort_args(&tab);
-		bubble_sort(&tab,ft_tablen(tab));
+		bubble_sort(&tab, ft_tablen(tab));
 	}
 	if (input->opts && ft_strchr(input->opts, 'r'))
 		tab = revsort_args(tab);
