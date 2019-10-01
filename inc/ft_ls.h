@@ -6,7 +6,7 @@
 /*   By: qbackaer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 14:42:36 by qbackaer          #+#    #+#             */
-/*   Updated: 2019/09/30 18:05:27 by qbackaer         ###   ########.fr       */
+/*   Updated: 2019/10/01 15:38:03 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char				**sort_args(char **raw, t_argstabs *input);
 */
 void				swap_args(char ***args, char **smaller, size_t i);
 size_t				get_argslen(char **args);
+void				bubble_sort(char ***tab, size_t tablen);
 
 /*
 **	sort_ll.c

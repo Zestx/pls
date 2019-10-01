@@ -6,7 +6,7 @@
 /*   By: srobin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 16:01:35 by srobin            #+#    #+#             */
-/*   Updated: 2019/09/26 16:04:51 by srobin           ###   ########.fr       */
+/*   Updated: 2019/10/01 16:31:14 by qbackaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,31 @@ size_t	get_argslen(char **args)
 		roam++;
 	}
 	return (max);
+}
+
+void	bubble_sort(char ***tab, size_t n)
+{
+	size_t		i;
+	size_t		j;
+	char		*tmp;
+
+	j = 0;
+	while (j < n - 1)
+	{
+		i = j + 1;
+		while (i < n)
+		{
+			if ((ft_strcmp((*tab)[j], (*tab)[i]) > 0)
+				&& (get_time((*tab)[j]) == get_time((*tab)[i])))
+			{
+				if (!(tmp = ft_strdup((*tab)[i])))
+					exit(EXIT_FAILURE);
+				ft_strcpy((*tab)[i], (*tab)[j]);
+				ft_strcpy((*tab)[j], tmp);
+				ft_sfree(tmp);
+			}
+			i++;
+		}
+		j++;	
+	}
 }
